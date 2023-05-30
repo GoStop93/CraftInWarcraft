@@ -4,7 +4,7 @@ import { AppStyle } from './App.styles';
 import { Welcome } from './routes/Welcome/Welcome';
 import { Layout } from './routes/Layout/Layout';
 import { Page404 } from './routes/Page404/Page404';
-// import { Main } from './routes/Main/Main';
+import { Main } from './routes/Main/Main';
 // import { Class } from './routes/Class/Class';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
           <Layout>
             <Routes>
                 <Route path='/' element={<Welcome/>}/>
-                {/* <Route path='/main' element={<Main/>}/> */}
+                <Route path='/main' element={<Main/>}/>
                 {/* <Route path='/main/:id' element={<Class background={''}/>}/> */}
                 <Route path='*' element={<Page404/>}/>
                 {/* <Welcome /> */}
