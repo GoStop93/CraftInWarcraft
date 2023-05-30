@@ -10,7 +10,7 @@ import {
     StyledLayerFront 
 } from "./Main.styles";
 import { Factions } from "./Factions/Factions";
-// import { Classes } from "./Classes/Classes";
+import { Classes } from "./Classes/Classes";
 
 export const Main = () => {
     const [offset, setOffset] = useState(0);
@@ -42,7 +42,7 @@ export const Main = () => {
                 <StyledLayerFront offset={offset}/>
             </StyledGreeting>
             <Factions/>
-            {/* <Classes/> */}
+            <Classes/>
         </StyledContainer>
     );
 };

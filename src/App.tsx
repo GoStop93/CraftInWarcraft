@@ -17,7 +17,6 @@ function App() {
                 <Route path='/main' element={<Main/>}/>
                 {/* <Route path='/main/:id' element={<Class background={''}/>}/> */}
                 <Route path='*' element={<Page404/>}/>
-                {/* <Welcome /> */}
             </Routes>
           </Layout>
         </AppStyle>
