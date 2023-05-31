@@ -31,8 +31,8 @@ export const StyledImage = styled.img<{ color: string, cardImage: any}>`
     transition: all 0.5s;
     box-shadow: 0 0 15px #fbee65;
     &:hover{
-        cursor: pointer;
-        transform: scaleX(-1) scale(1.2);
+        cursor: var(--custom-cursor-hover);
+        transform: scale(1.3);
         box-shadow: 0 0 100px ${props => props.color};
     }
 `;

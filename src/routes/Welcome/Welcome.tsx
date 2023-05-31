@@ -83,7 +83,8 @@ export const Welcome = () => {
                     <StyledTextContent >Welcome to the information portal about World of Warcraft. Here you can find all the information about the most popular MMORPG. Log into  your account and let's get started!</StyledTextContent>
                 </StyledText>
                 <StyledLogoContainer>
-                    <StyledLogo src={logo}
+                    <StyledLogo
+                        src={logo}
                         alt="Horde and Aliance" 
                         onMouseEnter={() => setShowImage(true)}
                         onMouseLeave={() => setShowImage(false)} 

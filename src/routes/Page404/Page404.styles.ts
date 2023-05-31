@@ -42,7 +42,7 @@ export const StyledButton = styled.button`
     font-family: warcraft;
     font-size: 2vh;
     &:hover {
-        cursor: pointer;
+        cursor: var(--custom-cursor-go);
         background-color: green;
         background-image: -webkit-gradient(linear, left top, left bottom, from(green), to(#5EFD01));
         background-image: linear-gradient(green, green);

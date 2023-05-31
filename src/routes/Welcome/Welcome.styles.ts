@@ -160,7 +160,7 @@ export const StyledLogo = styled.img`
     width: 54vh;
     transition: 1.2s;
     &:hover {
-        cursor: pointer;
+        cursor: var(--custom-cursor-hover);
         filter: drop-shadow(0 0 10px #FDE905);
     }
 `;

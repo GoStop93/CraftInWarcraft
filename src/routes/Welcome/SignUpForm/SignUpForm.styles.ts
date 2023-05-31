@@ -23,7 +23,7 @@ export const StyledButton = styled.button`
     box-shadow: 0 0  rgba(0, 0, 0, 0);
     border-radius: 2px;
     :hover {
-        cursor: pointer;
+        cursor: var(--custom-cursor-mail);
         background-color: #41c3ff;
         background-image: -webkit-gradient(linear, left top, left bottom, from(#41c3ff), to(#0298de));
         background-image: linear-gradient(#41c3ff, #0298de);

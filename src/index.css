@@ -5,6 +5,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: url('../public/cursor.cur'), auto;
+}
+
+:root {
+  --custom-cursor-hover: url('../public/hoverCursor.cur'), auto;
+}
+
+:root {
+  --custom-cursor-go: url('../public/goCursor.cur'), auto;
+}
+
+:root {
+  --custom-cursor-mail: url('../public/mailCursor.cur'), auto;
 }
 
 code {

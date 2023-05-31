@@ -65,7 +65,7 @@ export const StyledHordeFrame = styled.img`
     top: 47vh;
     z-index: 2;
     &:hover {
-        cursor: pointer;
+        cursor: var(--custom-cursor-hover);
     }
     &:hover ~ .horde_img {
         transform: scale(0.9);
@@ -106,7 +106,7 @@ export const StyledAllianceFrame = styled.img`
     top: 47vh;
     z-index: 2;
     &:hover {
-        cursor: pointer;
+        cursor: var(--custom-cursor-hover);
     }
     &:hover ~ .alliance_img {
         transform: scale(0.9);

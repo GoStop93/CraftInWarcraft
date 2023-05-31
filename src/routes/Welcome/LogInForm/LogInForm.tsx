@@ -76,7 +76,7 @@ export const LogInForm = () => {
                     type='password'
                 />
                 <StyledButton type="submit" className='login1'>Log in</StyledButton>
-                <StyledButton  className='reg' onClick={click}>Register</StyledButton>
+                <StyledButton   className='reg' onClick={click}>Register</StyledButton>
             </StyledForm>
         </Formik>
 
