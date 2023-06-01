@@ -5,7 +5,7 @@ import { Welcome } from './routes/Welcome/Welcome';
 import { Layout } from './routes/Layout/Layout';
 import { Page404 } from './routes/Page404/Page404';
 import { Main } from './routes/Main/Main';
-// import { Class } from './routes/Class/Class';
+import { Class } from './routes/Class/Class';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<Welcome/>}/>
                 <Route path='/main' element={<Main/>}/>
-                {/* <Route path='/main/:id' element={<Class background={''}/>}/> */}
+                <Route path='/main/:id' element={<Class />}/>
                 <Route path='*' element={<Page404/>}/>
             </Routes>
           </Layout>

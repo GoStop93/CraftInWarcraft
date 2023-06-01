@@ -12,9 +12,13 @@ import DemonHunterIcon from '../../../../assets/icons/small_classes/demon_hunter
 import DeathKnightIcon from '../../../../assets/icons/small_classes/death_knight.jpg';
 
 export interface ICardProps {
-    className: string,
+    className: CLASS_NAMES_ENUM,
     textColor: string,
-    shadowColor: string,
+    shadowColor: {
+        red: number,
+        green: number,
+        blue: number,
+    },
     text?: string
 };
 
@@ -30,7 +34,7 @@ export enum CLASS_NAMES_ENUM {
     MONK = 'monk',
     DRUID = 'druid',
     DEMON_HUNTER = 'demon_hunter',
-    DEATH_KNIGHT = 'death_khight'
+    DEATH_KNIGHT = 'death_knight'
 };
 
 export const pathDesignClassCard: Record<string, string> = {
@@ -45,5 +49,5 @@ export const pathDesignClassCard: Record<string, string> = {
     monk: MonkIcon,
     druid: DruidIcon,
     demon_hunter: DemonHunterIcon,
-    death_khight: DeathKnightIcon,
+    death_knight: DeathKnightIcon,
 }

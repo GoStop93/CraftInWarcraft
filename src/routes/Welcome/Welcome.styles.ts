@@ -110,15 +110,15 @@ export const StyledContent = styled.div`
 export const StyledSilvanaImage = styled.img`
     position: absolute;
     width: 55vh;
-    top:  2vh;
+    top:  1vh;
     left: 5vh;
 `;
 
 export const StyledGarroshImage = styled.img`
     position: absolute;
     width: 50vh;
-    bottom: 4vh;
-    left: 30vh;
+    bottom: 3vh;
+    left: 34vh;
 `;
 
 export const StyledAnduinImage = styled.img`

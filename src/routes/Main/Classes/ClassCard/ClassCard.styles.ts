@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const StyledContainer = styled.div`
     display: flex;
@@ -19,7 +19,19 @@ export const StyledDescription = styled.h3<{ color: string}>`
     font-weight: 100;
 `;
 
-export const StyledImage = styled.img<{ color: string, cardImage: any}>`
+const pulseAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--pulse-shadow-color-red), var(--pulse-shadow-color-green), var(--pulse-shadow-color-blue), 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 100px rgba(var(--pulse-shadow-color-red), var(--pulse-shadow-color-green), var(--pulse-shadow-color-blue), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--pulse-shadow-color-red), var(--pulse-shadow-color-green), var(--pulse-shadow-color-blue), 0);
+  }
+`;
+
+export const StyledImage = styled.img<{ colorRed: number, colorGreen: number, colorBlue: number, cardImage: any }>`
     border-radius: 9vh;
     background-image: url(${props => props.cardImage});
     background-size: 25vh;
@@ -33,6 +45,9 @@ export const StyledImage = styled.img<{ color: string, cardImage: any}>`
     &:hover{
         cursor: var(--custom-cursor-hover);
         transform: scale(1.3);
-        box-shadow: 0 0 100px ${props => props.color};
+        --pulse-shadow-color-red: ${props => props.colorRed};
+        --pulse-shadow-color-green: ${props => props.colorGreen};
+        --pulse-shadow-color-blue: ${props => props.colorBlue};
+        animation: ${pulseAnimation} 1.5s infinite;
     }
 `;

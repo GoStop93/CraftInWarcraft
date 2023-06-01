@@ -1,23 +1,17 @@
-import { StyledContainer, StyledMenuItem } from './Header.styles';
-import { NavLink } from 'react-router-dom';
-
+import { StyledContainer, StyledMenuItem, StyledNavLink } from './Header.styles';
 
 export const Header = () => {
     return (
         <StyledContainer>
             <StyledMenuItem>
-                <NavLink
-                style={({isActive}) => ({textShadow: isActive ? '0 0 13px white' : 'none', textDecoration: 'none', color: isActive ? 'white' : '#ababab'})}
-                    to='/' >
-                        LogIn
-                </NavLink>
+                <StyledNavLink to='/' >
+                    LogIn
+                </StyledNavLink>
             </StyledMenuItem>
             <StyledMenuItem>
-                <NavLink 
-                    style={({isActive}) => ({textShadow: isActive ? '0 0 13px white' : 'none', textDecoration: 'none', color: isActive ? 'white' : '#ababab'})}
-                    to='/main'>
-                        Main
-                </NavLink>
+                <StyledNavLink to='/main'>
+                    Main
+                </StyledNavLink>
             </StyledMenuItem>
             <StyledMenuItem>Shop</StyledMenuItem>
             <StyledMenuItem>News</StyledMenuItem>
