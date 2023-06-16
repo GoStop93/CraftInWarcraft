@@ -1,13 +1,11 @@
 import styled from "styled-components";
-import background from '../../../assets/images/background/main/lordaeron.jpg';
-import ground from '../../../assets/images/ground.png';
+import ground from '../../../../assets/images/ground.png';
 
-export const StyledContainer = styled.div`
-    margin-top: 100vh;
+export const StyledContainer = styled.div<{ background: string }>`
     min-height: 100vh;
+    position: relative;
     width: 100%;
-    position: absolute;
-    background-image: url(${background});
+    background-image: url(${(props) => props.background});
     background-size: cover;
     background-position: center;
     ::after {
@@ -25,31 +23,38 @@ export const StyledContainer = styled.div`
     }
 `;
 
-export const StyledHeader = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-export const StyledTitle = styled.div`
-    font-size: 10vh;
-    font-weight: 100;
-    margin-top: 5vh;
-    color: #fbee65;
-    text-shadow:  0 0 5px #FDE905;
-`;
-
-export const StyledSubtitle = styled.div`
-    color :#E0D3B8;
-    font-size: 3vh;
-    font-weight: 100;
-    margin-top: 2vh;
-    width: 103vh;
+export const StyledLogo = styled.img`
+    position: absolute;
+    top: -12vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20vh;
+    z-index: 105;
 `;
 
 export const StyledContent = styled.div`
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 0 0 15vh;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 5vh;
+`;
+
+export const StyledTitle = styled.div`
+    margin-top: 17vh;
+    font-size: 6vh;
+    font-weight: 100;
+    color: #fbee65;
+`;
+
+export const StyledSubtitle = styled.div`
+    margin: 2vh auto;
+    width: 125vh;
+    color :#E0D3B8;
+    font-size: 2.5vh;
+`;
+
+export const StyledRaceCards = styled.div`
+    display: flex;
+    gap: 5vh;
+    margin-top: 10vh;
 `;

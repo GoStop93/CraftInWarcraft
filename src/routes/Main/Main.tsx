@@ -11,6 +11,7 @@ import {
 } from "./Main.styles";
 import { Factions } from "./Factions/Factions";
 import { Classes } from "./Classes/Classes";
+import { Races } from "./Races/Races";
 
 export const Main = () => {
     const [offset, setOffset] = useState(0);
@@ -43,6 +44,7 @@ export const Main = () => {
             </StyledGreeting>
             <Factions/>
             <Classes/>
+            <Races />
         </StyledContainer>
     );
 };
