@@ -79,3 +79,30 @@ export const StyledClassEmblem = styled.img`
 export const StyledSpecializationCards = styled.div`
     margin-top: -4vh;
 `;
+
+export const BackButton = styled.button`
+    position: absolute;
+    top: 12vh;
+    left: 4vh;
+    display: flex;
+    align-items: center;
+    width: 115px;
+    height: 35px;
+    gap: 8px;
+    border-radius: 8px;
+    background: #202020;
+    
+    &:hover {
+        cursor: var(--custom-cursor-go);
+        filter: drop-shadow(0 0 5px #FDE905);
+    }
+`;
+
+export const StyledButtonText = styled.div<{ color: string}>`
+    font-size: 23px;
+    padding: 6px 0;
+    margin-top: 0.2vh;
+    color: ${(props) => props.color};
+    font-family: warcraft;
+    text-shadow: 0 0 2px black;
+`;

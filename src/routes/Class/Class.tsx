@@ -10,7 +10,11 @@ import {
     StyledSpecializationContainer,
     StyledClassEmblem,
     StyledSpecializationCards,
+    BackButton,
+    StyledButtonText,
  } from "./Class.styles";
+
+ import { ChevronLeftIcon } from "../../assets/icons/navigation_icons";
 
 import { classInformation } from "./type";
 import { useEffect } from "react";
@@ -28,6 +32,10 @@ export const Class = () => {
 
     const classInfo = classInformation[id];
 
+    const navigateBack = () => {
+        navigate(-1);
+    }
+
     useEffect(() => {
         if (!classInfo) {
           console.log(`Class with id "${id}" not found`);
@@ -38,6 +46,10 @@ export const Class = () => {
     return !classInfo ? null :(
         <StyledContainer background={classInfo.backgroundImage}>
             <StyledHeader color={classInfo.textColor}>{formattedClassName}</StyledHeader>
+            <BackButton onClick={navigateBack}>
+                <ChevronLeftIcon color={classInfo.textColor}/>
+                <StyledButtonText color={classInfo.textColor}>Back</StyledButtonText>
+            </BackButton>
             <StyledContent>
                 <StyledClassImage 
                     src={classInfo.classImage} 
