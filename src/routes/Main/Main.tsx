@@ -20,7 +20,7 @@ export const Main = () => {
     useEffect(() => {
         const handleScroll = () => {
             requestAnimationFrame(() => {
-                setOffset(window.pageYOffset);
+                setOffset(window.scrollY);
             });
         };
 

@@ -28,7 +28,7 @@ const formatClassName = (className: string) => {
 export const Class = () => {
     const navigate = useNavigate();
     const { id = "" } = useParams();
-    const formattedClassName =  formatClassName(id);
+    const formattedClassName = formatClassName(id);
 
     const classInfo = classInformation[id];
 
@@ -38,7 +38,6 @@ export const Class = () => {
 
     useEffect(() => {
         if (!classInfo) {
-          console.log(`Class with id "${id}" not found`);
           navigate("*");
         }
       }, [classInfo, id, navigate]);

@@ -1,7 +1,8 @@
 export interface IRace {
     name: string;
     iconFull: string;
-    iconPart?: string;
+    iconPart: string;
+    text?: string;
 }
 
 export interface IRaceBlockProps {

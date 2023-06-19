@@ -1,4 +1,5 @@
 import { IRaceCardProps } from './type';
+import { Link } from 'react-router-dom';
 import { 
     StyledContainer, 
     StyledBox,
@@ -14,18 +15,21 @@ export const RaceCard = ({
     smallLogo, 
     name,
     iconFull, 
-    iconPart 
+    iconPart,
+    text,
 }: IRaceCardProps) => {
     return (
         <StyledContainer>
-            <StyledBox color={color}>
-                <StyledBoxForImage>
-                    <StyledFullImage src={iconFull} />
-                </StyledBoxForImage>
-                <StyledPartImage src={iconPart}/>
-                <StyledLogo src={smallLogo} />
-            </StyledBox>
-            <StyledRaceName>{name}</StyledRaceName>
+            <Link style={{textDecoration: 'none'}} to={`/main/race/${name}`} >
+                <StyledBox color={color}>
+                    <StyledBoxForImage>
+                        <StyledFullImage src={iconFull} />
+                    </StyledBoxForImage>
+                    <StyledPartImage src={iconPart}/>
+                    <StyledLogo src={smallLogo} />
+                </StyledBox>
+                <StyledRaceName>{text ? text : name}</StyledRaceName>
+            </Link>
         </StyledContainer>
     );
 };

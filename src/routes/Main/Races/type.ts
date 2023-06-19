@@ -58,9 +58,10 @@ export const racesData = [
                 iconPart: DwarfPart,
             },
             {
-                name: 'Night Elf',
+                name: 'Night_Elf',
                 iconFull: NightElfFull,
                 iconPart: NightElfPart,
+                text: 'Night Elf'
             },
             {
                 name: 'Gnome',
@@ -73,14 +74,15 @@ export const racesData = [
                 iconPart: DraeneiPart,
             },
             {
-                name: 'Worgemn',
+                name: 'Worgen',
                 iconFull: WorgenFull,
                 iconPart: WorgenPart,
             },
             {
-                name: 'Pandaren',
+                name: 'Pandaren_alliance',
                 iconFull: PandarenAllianceFull,
                 iconPart: PandarenAlliancePart,
+                text: 'Pandaren',
             },
         ]
     },
@@ -114,9 +116,10 @@ export const racesData = [
                 iconPart: TrollPart,
             },
             {
-                name: 'Blood Elf',
+                name: 'Blood_Elf',
                 iconFull: BloodElfFull,
                 iconPart: BloodElfPart,
+                text: 'Blood Elf'
             },
             {
                 name: 'Goblin',
@@ -124,9 +127,10 @@ export const racesData = [
                 iconPart: GoblinPart,
             },
             {
-                name: 'Pandaren',
+                name: 'Pandaren_horde',
                 iconFull: PandarenHordeFull,
                 iconPart: PandarenHordePart,
+                text: 'Pandaren',
             },
         ]
     },

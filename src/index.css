@@ -20,6 +20,17 @@ body {
   --custom-cursor-mail: url('../public/mailCursor.cur'), auto;
 }
 
+:root {
+  --custom-cursor-sword: url('../public/swordCursor.cur'), auto;
+}
+:root {
+  --custom-cursor-gear: url('../public/gearCursor.cur'), auto;
+}
+
+:root {
+  --custom-cursor-bag: url('../public/bagCursor.cur'), auto;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

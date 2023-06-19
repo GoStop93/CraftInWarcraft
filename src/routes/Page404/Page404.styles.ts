@@ -21,13 +21,13 @@ export const StyledTitle = styled.div`
     width: 60vh;
     font-size: 9vh;
     color: #5EFD01;
-    text-shadow: 0px 0 15px black;
+    text-shadow: 7px 7px 3px black;
 `;
 
 export const StyledSubtitle = styled.div`
     font-size: 6vh;
     color: #5EFD01;
-    text-shadow: 0px 0px 5px black;
+    text-shadow: 7px 7px 3px black;
     animation: beat 2s ease infinite;
     margin: 5vh;
 `;

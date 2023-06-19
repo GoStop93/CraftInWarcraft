@@ -6,6 +6,7 @@ import { Layout } from './routes/Layout/Layout';
 import { Page404 } from './routes/Page404/Page404';
 import { Main } from './routes/Main/Main';
 import { Class } from './routes/Class/Class';
+import { Race } from './routes/Race/Race';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
             <Routes>
                 <Route path='/' element={<Welcome/>}/>
                 <Route path='/main' element={<Main/>}/>
-                <Route path='/main/:id' element={<Class />}/>
+                <Route path='/main/class/:id' element={<Class />}/>
+                <Route path='/main/race/:id' element={<Race />}/>
                 <Route path='*' element={<Page404/>}/>
             </Routes>
           </Layout>

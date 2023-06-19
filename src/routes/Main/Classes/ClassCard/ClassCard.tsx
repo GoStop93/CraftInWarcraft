@@ -12,7 +12,7 @@ export const ClassCard = ({className, textColor, shadowColor, text}: ICardProps)
     return (
         <StyledContainer>
             <StyledClass>
-                <Link style={{textDecoration: 'none'}} to={`/main/${className}`}>
+                <Link style={{textDecoration: 'none'}} to={`/main/class/${className}`}>
                     <StyledDescription color={textColor}>{text ?  text : className}</StyledDescription>
                     <StyledImage 
                       cardImage={pathDesignClassCard[className]} 

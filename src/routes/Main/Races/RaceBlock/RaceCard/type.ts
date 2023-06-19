@@ -3,5 +3,6 @@ export interface IRaceCardProps {
     smallLogo: string;
     name: string;
     iconFull: string;
-    iconPart?: string;
+    iconPart: string;
+    text?: string;
 }

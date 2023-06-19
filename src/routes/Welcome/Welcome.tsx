@@ -39,7 +39,7 @@ export const Welcome = () => {
     useEffect(() => {
         const handleScroll = () => {
             requestAnimationFrame(() => {
-                setOffset(window.pageYOffset);
+                setOffset(window.scrollY);
             });
         };
 

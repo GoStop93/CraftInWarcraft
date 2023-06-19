@@ -32,6 +32,7 @@ export const RaceBlock = ({
                             color={color} 
                             smallLogo={smallLogo}
                             name={race.name}
+                            text={race.text}
                             iconFull={race.iconFull}
                             iconPart={race.iconPart}
                         />
