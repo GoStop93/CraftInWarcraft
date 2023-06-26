@@ -5,4 +5,5 @@ export interface IModalWindowProps {
   children: ReactNode | string;
   hasBackground?: boolean;
   big?: boolean;
+  medium?: boolean;
 }

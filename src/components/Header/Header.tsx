@@ -13,7 +13,11 @@ export const Header = () => {
                     Main
                 </StyledNavLink>
             </StyledMenuItem>
-            <StyledMenuItem>Shop</StyledMenuItem>
+            <StyledMenuItem>
+                <StyledNavLink to='/timeline'>
+                    Timeline
+                </StyledNavLink>
+            </StyledMenuItem>
             <StyledMenuItem>News</StyledMenuItem>
             <StyledMenuItem>Blizzcon</StyledMenuItem>
         </StyledContainer>

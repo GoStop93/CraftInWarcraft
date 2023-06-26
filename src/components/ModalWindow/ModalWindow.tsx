@@ -9,6 +9,7 @@ export const ModalWindow = ({
   onCloseHandler,
   hasBackground = false,
   big = false,
+  medium = false,
 }: IModalWindowProps) => {
 
   const onClose = (e: MouseEvent<HTMLElement>) => {
@@ -18,8 +19,8 @@ export const ModalWindow = ({
   };
 
   const createWrapper = () => (
-    <StyledContainer>
-      <CloseButton onClick={onClose} big={big}>
+    <StyledContainer medium={medium} >
+      <CloseButton onClick={onClose} big={big} medium={medium} >
         <IconCross />
       </CloseButton>
       {children}

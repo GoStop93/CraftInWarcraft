@@ -12,21 +12,21 @@ export const StyledCover = styled.div`
   align-items: center;
 `;
 
-export const StyledContainer = styled.div`
+export const StyledContainer = styled.div<{ medium?: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 3vh;
+  padding: ${(props) => (props.medium ? '0' : '3vh')};
   gap: 16px;
   background: #181818;
   border: 1px solid rgb(68, 68, 68);
 `;
 
-export const CloseButton = styled.button<{ big?: boolean }>`
+export const CloseButton = styled.button<{ big?: boolean, medium?: boolean }>`
   position: absolute;
-  top: ${(props) => (props.big ?' -4vh' : '2vh')};
-  right: ${(props) => (props.big ?' -4vh' : '2vh')};
+  top: ${(props) => (props.big ?' -4vh' : props.medium ? '-3vh' : '2vh')};
+  right: ${(props) => (props.big ?' -4vh' : props.medium ? '-3vh' : '2vh')};
   fill: rgb(248, 183, 0);
   padding: 0;
   background: transparent;
