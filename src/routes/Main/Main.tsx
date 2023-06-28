@@ -7,15 +7,19 @@ import {
     StyledSubtitle,
     StyledLayerBack,
     StyledLayerMiddle,
-    StyledLayerFront 
+    StyledLayerFront,
+    UpButton,
 } from "./Main.styles";
+import { UpIcon } from "../../assets/icons/navigation_icons";
 import { Factions } from "./Factions/Factions";
 import { Classes } from "./Classes/Classes";
 import { Races } from "./Races/Races";
+import { ExplorerLink } from "./ExplorerLink/ExplorerLink";
 
 export const Main = () => {
     const [offset, setOffset] = useState(0);
     const name = localStorage.getItem('name');
+    const [showButton, setShowButton] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -31,6 +35,21 @@ export const Main = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (offset > 1500) { // Change the scroll threshold as needed
+          setShowButton(true);
+        } else {
+          setShowButton(false);
+        }
+    }, [offset])
+
+    const handleScrollToTop = () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      };
+
     return (
         <StyledContainer>
             <StyledGreeting>
@@ -42,9 +61,15 @@ export const Main = () => {
                 <StyledLayerMiddle offset={offset}/>
                 <StyledLayerFront offset={offset}/>
             </StyledGreeting>
-            <Factions/>
-            <Classes/>
+            <Factions />
+            <Classes />
             <Races />
+            <ExplorerLink />
+            {showButton && (
+                <UpButton onClick={handleScrollToTop}>
+                    <UpIcon />
+                </UpButton>
+            )}
         </StyledContainer>
     );
 };

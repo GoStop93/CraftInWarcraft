@@ -2,23 +2,9 @@ import styled from "styled-components";
 import front from '../../assets/images/background/main/front.png';
 import middle from '../../assets/images/background/main/middle.png';
 import back from '../../assets/images/background/main/back.jpg';
-import ground from '../../assets/images/ground.png';
 
 export const StyledContainer = styled.div`
     position: relative;
-    ::after {
-        content: '';
-        position: absolute;
-        z-index: 100;
-        width: 100%;
-        height: 1vh;
-        background-image: url(${ground});
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        bottom: -0.5vh;
-        left: 0px;
-    };
 `;
 
 export const StyledGreeting = styled.div`
@@ -86,4 +72,33 @@ export const StyledLayerFront = styled.div<{ offset: number}>`
     will-change: transform;
     transform: translate3d(0, ${props => props.offset/6}px, 0);
     z-index: 4;
+`;
+
+export const UpButton = styled.button`
+    position: fixed;
+    right: 5vh;
+    bottom: 5vh;
+    z-index: 200;
+    width: 6vh;
+    height: 6vh;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    backdrop-filter: blur(0.4rem);
+    transform: rotateX(180deg);
+    border: 2px solid rgb(248, 183, 0);
+    fill: rgb(248, 183, 0);
+    transition: all 0.3s;
+    &:hover {
+        cursor: var(--custom-cursor-sword);
+        fill: red;
+        border-color: red;
+        transform: rotateX(180deg) scale(1.2);
+    }
+    & svg {
+        width: 100%;
+        height: 100%;
+    }
 `;

@@ -30,7 +30,6 @@ import {
     StyledLoginContainer,
     StyledCopy 
 } from "./Welcome.styles";
-import React from "react";
 
 export const Welcome = () => {
     const [offset, setOffset] = useState(0);

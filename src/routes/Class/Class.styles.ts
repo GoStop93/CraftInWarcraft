@@ -65,6 +65,7 @@ export const StyledSpecializationContainer = styled.div`
     border-radius: 2vh;
     opacity: 0.8;
     z-index: 2;
+    border: 1px solid rgb(68, 68, 68);
 `;
 
 export const StyledClassEmblem = styled.img`

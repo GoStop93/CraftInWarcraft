@@ -22,6 +22,19 @@ export const StyledContainer = styled.div`
         bottom: -0.5vh;
         left: 0px;
     }
+    ::before {
+        content: '';
+        position: absolute;
+        z-index: 100;
+        width: 100%;
+        height: 1vh;
+        background-image: url(${ground});
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        top: -0.5vh;
+        left: 0px;
+    }
 `;
 
 export const StyledInformation = styled.div`
