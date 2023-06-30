@@ -19,31 +19,14 @@ const useWowService = () => {
     });
 
     if (!response.access_token) {
-      console.error('Access token not found in response');
       return;
     }
 
     accessToken = response.access_token;
-    console.log('Токен получен:', response.access_token);
-  };
-
-  const getWowTokenPrice = async () => {
-    if (!accessToken) {
-      console.error('Access token is missing');
-      return;
-    }
-
-    const url = `https://us.api.blizzard.com/data/wow/token/?namespace=dynamic-us`;
-    const headers = {
-      Authorization: `Bearer ${accessToken}`,
-    };
-
-    const tokenPrice = await request(url, 'GET', null, headers);
-
-    console.log('Текущая цена WoW Token:', tokenPrice);
   };
 
   const getRandomItemIcon = async () => {
+
     if (!accessToken) {
       await getToken();
     }
@@ -60,19 +43,89 @@ const useWowService = () => {
     const itemIcon = await request(url, 'GET', null);
 
     return {
-      url: itemIcon.assets.map(transformCoin)[0].url,
+      url: itemIcon.assets.map(transformItem)[0].url,
     };
 
   };
 
-  const transformCoin = (item: any) => {
+  const getInstance = async (id: number) => {
+
+    if (!accessToken) {
+      await getToken();
+    }
+
+    // const excludedNumbers = [19014, 19015, 19021, 19053, 19063, 19072, 19073, 19074, 19075, 19076, 19077, 19078, 19079, 19080, 19081, 19082, 19122, 19158, 19161];
+    // let randomNumber;
+
+    // do {
+    //   randomNumber = Math.floor(Math.random() * (19170 - 19002 + 1)) + 19002;
+    // } while (excludedNumbers.includes(randomNumber));
+  
+    const url = `https://us.api.blizzard.com/data/wow/journal-instance/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+    const instanceInformation = await request(url, 'GET', null);
+
+    const urlForImage = `${instanceInformation.media.key.href}&access_token=${accessToken}`;
+    const instanceImage = await request(urlForImage, 'GET', null);
+
+    console.log(instanceInformation);
+
+    return {
+      name: instanceInformation.name,
+      description: instanceInformation.description,
+      image: instanceImage.assets[0].value
+    };
+
+  };
+
+  const getInstanceByName = async (instanceName: string) => {
+
+    if (!accessToken) {
+      await getToken();
+    }
+
+    const lowercaseInstanceName = instanceName.toLowerCase();
+    
+    const urlAll =`https://us.api.blizzard.com/data/wow/journal-instance/index?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+    const allInstances = await request(urlAll, 'GET', null);
+
+    let id: number | null = null;
+
+    allInstances.instances.forEach((instance: any) => {
+      const lowercaseName = instance.name.toLowerCase();
+
+      if (lowercaseName.includes(lowercaseInstanceName)) {
+        id = instance.id;
+      }
+    });
+  
+  if (id !== null) {
+    const url = `https://us.api.blizzard.com/data/wow/journal-instance/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+    const instanceInformation = await request(url, 'GET', null);
+
+    const urlForImage = `${instanceInformation.media.key.href}&access_token=${accessToken}`;
+    const instanceImage = await request(urlForImage, 'GET', null);
+
+    console.log(allInstances);
+
+    return {
+        name: instanceInformation.name,
+        description: instanceInformation.description,
+        image: instanceImage.assets[0].value
+    };
+  } else {
+    throw new Error(`Instance with name "${instanceName}" not found.`);
+  }
+
+};
+
+  const transformItem = (item: any) => {
     return {
         url: item.value,
     }
 };
 
   
-  return { loading, error, clearError, getToken, getWowTokenPrice, getRandomItemIcon };
+  return { loading, error, clearError, getToken, getRandomItemIcon, getInstance, getInstanceByName };
 };
 
 export default useWowService;

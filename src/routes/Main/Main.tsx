@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
 import { 
     StyledContainer, 
     StyledGreeting,
@@ -20,6 +21,8 @@ export const Main = () => {
     const [offset, setOffset] = useState(0);
     const name = localStorage.getItem('name');
     const [showButton, setShowButton] = useState(false);
+
+    const duration = 2000;
 
     useEffect(() => {
         const handleScroll = () => {
@@ -65,11 +68,19 @@ export const Main = () => {
             <Classes />
             <Races />
             <ExplorerLink />
-            {showButton && (
-                <UpButton onClick={handleScrollToTop}>
-                    <UpIcon />
-                </UpButton>
-            )}
+            <CSSTransition
+                    in={showButton}
+                    timeout={duration}
+                    classNames='image'
+                    mountOnEnter
+                    unmountOnExit
+                >
+                    <div>
+                    <UpButton onClick={handleScrollToTop}>
+                        <UpIcon />
+                    </UpButton>
+                    </div>
+                </CSSTransition>
         </StyledContainer>
     );
 };

@@ -8,6 +8,7 @@ import { Main } from './routes/Main/Main';
 import { Class } from './routes/Class/Class';
 import { Race } from './routes/Race/Race';
 import { TimeLine } from './routes/Timeline/Timeline';
+import { Explorer } from './routes/Explorer/Explorer';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path='/main/class/:id' element={<Class />}/>
                 <Route path='/main/race/:id' element={<Race />}/>
                 <Route path='/timeline' element={<TimeLine />}/>
+                <Route path='/explorer' element={<Explorer />}/>
                 <Route path='*' element={<Page404/>}/>
             </Routes>
           </Layout>

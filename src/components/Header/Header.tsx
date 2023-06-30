@@ -18,8 +18,11 @@ export const Header = () => {
                     Timeline
                 </StyledNavLink>
             </StyledMenuItem>
-            <StyledMenuItem>News</StyledMenuItem>
-            <StyledMenuItem>Blizzcon</StyledMenuItem>
+            <StyledMenuItem>
+                <StyledNavLink to='/explorer'>
+                    Explorer
+                </StyledNavLink>
+            </StyledMenuItem>
         </StyledContainer>
     );
 };
