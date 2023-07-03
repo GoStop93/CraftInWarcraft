@@ -12,6 +12,7 @@ export const ToolTip = ({
   message,
   title,
   children,
+  dungeons,
 }: IToolTipProps) => {
 
     const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
@@ -38,7 +39,7 @@ export const ToolTip = ({
       }, []);
     return (
         <StyledWrapper>
-            <StyledToolTip tooltipPosition={tooltipPosition}>
+            <StyledToolTip tooltipPosition={tooltipPosition} dungeons={dungeons}>
             <StyledToolTipContent>
                 <StyledToolTipTitle>{title}</StyledToolTipTitle>
                 <StyledToolTipText>{message}</StyledToolTipText>

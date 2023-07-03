@@ -4,4 +4,5 @@ export interface IToolTipProps {
   message: string;
   title: string;
   children: ReactNode;
+  dungeons?: boolean;
 }

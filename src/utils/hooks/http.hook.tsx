@@ -30,10 +30,11 @@ export const useHttp = () => {
 
             return data;
 
-        } catch(e: any) {
+        } catch (e: any) {
             setLoading(false);
             setError(e.message);
             setProcess('error');
+    
             throw e;
         }
 

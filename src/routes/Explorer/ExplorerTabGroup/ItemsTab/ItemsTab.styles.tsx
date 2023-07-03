@@ -4,7 +4,7 @@ import bottomBackground from '../../../../assets/images/background/explorer/seco
 import ground from '../../../../assets/images/ground.png';
 export const StyledContainer = styled.div`
     height: 100vh;
-    margin-top: 35vh;
+    margin-top: 34.5vh;
     width: 100%;
 `;
 

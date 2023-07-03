@@ -53,26 +53,22 @@ const useWowService = () => {
     if (!accessToken) {
       await getToken();
     }
-
-    // const excludedNumbers = [19014, 19015, 19021, 19053, 19063, 19072, 19073, 19074, 19075, 19076, 19077, 19078, 19079, 19080, 19081, 19082, 19122, 19158, 19161];
-    // let randomNumber;
-
-    // do {
-    //   randomNumber = Math.floor(Math.random() * (19170 - 19002 + 1)) + 19002;
-    // } while (excludedNumbers.includes(randomNumber));
   
     const url = `https://us.api.blizzard.com/data/wow/journal-instance/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
     const instanceInformation = await request(url, 'GET', null);
+    
+    const IDs = instanceInformation.encounters.map((encounter: { id: number }) => encounter.id)
 
     const urlForImage = `${instanceInformation.media.key.href}&access_token=${accessToken}`;
     const instanceImage = await request(urlForImage, 'GET', null);
 
-    console.log(instanceInformation);
 
     return {
-      name: instanceInformation.name,
+      name: instanceInformation.name ? instanceInformation.name : 'There is no name',
       description: instanceInformation.description,
-      image: instanceImage.assets[0].value
+      image: instanceImage.assets[0].value,
+      level: instanceInformation.minimum_level,
+      ids: IDs,
     };
 
   };
@@ -97,6 +93,7 @@ const useWowService = () => {
         id = instance.id;
       }
     });
+
   
   if (id !== null) {
     const url = `https://us.api.blizzard.com/data/wow/journal-instance/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
@@ -104,17 +101,33 @@ const useWowService = () => {
 
     const urlForImage = `${instanceInformation.media.key.href}&access_token=${accessToken}`;
     const instanceImage = await request(urlForImage, 'GET', null);
-
-    console.log(allInstances);
+    const IDs = instanceInformation.encounters.map((encounter: { id: number }) => encounter.id)
 
     return {
         name: instanceInformation.name,
         description: instanceInformation.description,
-        image: instanceImage.assets[0].value
+        image: instanceImage.assets[0].value,
+        level: instanceInformation.minimum_level,
+        ids: IDs,
     };
-  } else {
-    throw new Error(`Instance with name "${instanceName}" not found.`);
+    
   }
+
+};
+
+const getEncounter = async (id: number) => {
+
+  if (!accessToken) {
+    await getToken();
+  }
+
+  const url = `https://us.api.blizzard.com/data/wow/journal-encounter/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+  const encounterInformation = await request(url, 'GET', null);
+
+  return {
+    name: encounterInformation.name,
+    description: encounterInformation.description,
+  };
 
 };
 
@@ -125,7 +138,7 @@ const useWowService = () => {
 };
 
   
-  return { loading, error, clearError, getToken, getRandomItemIcon, getInstance, getInstanceByName };
+  return { loading, error, clearError, getToken, getRandomItemIcon, getInstance, getInstanceByName, getEncounter };
 };
 
 export default useWowService;

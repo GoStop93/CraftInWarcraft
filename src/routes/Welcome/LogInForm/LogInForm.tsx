@@ -17,7 +17,7 @@ export const LogInForm = () => {
         setRegForm(true);
     }
 
-    const MyTextInput = ({ label, ...props }: MyTextInputProps) => {
+const MyTextInput = ({ label, ...props }: MyTextInputProps) => {
         const [field, meta] = useField(props);
     
         return (

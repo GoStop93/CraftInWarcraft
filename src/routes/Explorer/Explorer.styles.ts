@@ -25,7 +25,7 @@ export const StyledHeader = styled.div`
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        bottom: -0.2vh;
+        bottom: 0.2vh;
         left: 0px;
     }
 `;

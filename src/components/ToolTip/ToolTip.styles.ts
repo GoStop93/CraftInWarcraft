@@ -2,13 +2,12 @@ import styled, { css } from 'styled-components';
 
 
 export const StyledWrapper = styled.div`
-/* position: relative; */
   &:hover > div:first-child {
     display: flex;
   }
 `;
 
-export const StyledToolTip = styled.div<{ tooltipPosition: any }>`
+export const StyledToolTip = styled.div<{ tooltipPosition: any; dungeons?: boolean }>`
   position: absolute;
   max-width: 40vh;
   display: none;
@@ -22,9 +21,9 @@ export const StyledToolTip = styled.div<{ tooltipPosition: any }>`
   box-shadow: 7px 7px 3px black;
   opacity: 0.9;
 
-  ${({ tooltipPosition }) => css`
-    top: calc(${tooltipPosition.y}px - 45%);
-    left: calc(${tooltipPosition.x}px + 2%);
+  ${({ tooltipPosition, dungeons }) => css`
+    top: calc(${tooltipPosition.y}px - ${dungeons ? '450%' : '45%'});
+    left: calc(${tooltipPosition.x}px + ${dungeons ? '0%' : '2%'});
   `}
 `;
 
