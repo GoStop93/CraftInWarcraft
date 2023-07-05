@@ -131,6 +131,98 @@ const getEncounter = async (id: number) => {
 
 };
 
+const getPet = async (id: number) => {
+
+  if (!accessToken) {
+    await getToken();
+  }
+
+  const url = `https://us.api.blizzard.com/data/wow/pet/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+  const petInfo = await request(url, 'GET', null);
+
+  const IDs = petInfo.abilities ? petInfo.abilities.map((abil: { ability: { id: number } }) => abil.ability.id) : [];
+
+  return {
+    name: petInfo.name,
+    description: petInfo.description,
+    icon: petInfo.icon,
+    ids: IDs,
+  };
+
+};
+
+const getPetAbility = async (id: number) => {
+
+  if (!accessToken) {
+    await getToken();
+  }
+
+  const url = `https://us.api.blizzard.com/data/wow/pet-ability/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+  const petAbilityInfo = await request(url, 'GET', null);
+
+  const urlMedia = `${petAbilityInfo.media.key.href}&access_token=${accessToken}`;
+  const petMedia = await request(urlMedia, 'GET', null);
+
+  return {
+    name: petAbilityInfo.name ? petAbilityInfo.name : null,
+    icon: petMedia.assets[0].value ? petMedia.assets[0].value : null,
+  };
+
+};
+
+const getPetByName = async (name: string) => {
+
+  if (!accessToken) {
+    await getToken();
+  }
+
+  const lowercasePetName = name.toLowerCase();
+
+  const urlForAllPets = `https://us.api.blizzard.com/data/wow/pet/index?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+  const allPets = await request(urlForAllPets, 'GET', null);
+
+  let id: number | null = null;
+
+  allPets.pets.forEach((pet: any) => {
+    const lowercaseName = pet.name.toLowerCase();
+
+    if (lowercaseName.includes(lowercasePetName)) {
+      id = pet.id;
+    }
+  });
+
+  if (id !== null) {
+    const url = `https://us.api.blizzard.com/data/wow/pet/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+    const petInfo = await request(url, 'GET', null);
+
+    const IDs = petInfo.abilities ? petInfo.abilities.map((abil: { ability: { id: number } }) => abil.ability.id) : [];
+
+    return {
+      name: petInfo.name,
+      description: petInfo.description,
+      icon: petInfo.icon,
+      ids: IDs,
+    };
+  }
+
+};
+
+const getCreature = async () => {
+
+  if (!accessToken) {
+    await getToken();
+  }
+  
+  const url = `https://us.api.blizzard.com/data/wow/creature/42722?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+  const creatures = await request(url, 'GET', null);
+
+  // console.log(creatures);
+
+  return {
+  };
+
+};
+
   const transformItem = (item: any) => {
     return {
         url: item.value,
@@ -138,7 +230,20 @@ const getEncounter = async (id: number) => {
 };
 
   
-  return { loading, error, clearError, getToken, getRandomItemIcon, getInstance, getInstanceByName, getEncounter };
+  return { 
+    loading, 
+    error, 
+    clearError, 
+    getToken, 
+    getRandomItemIcon, 
+    getInstance, 
+    getInstanceByName, 
+    getEncounter, 
+    getPet,
+    getPetAbility,
+    getPetByName,
+    getCreature,
+  };
 };
 
 export default useWowService;

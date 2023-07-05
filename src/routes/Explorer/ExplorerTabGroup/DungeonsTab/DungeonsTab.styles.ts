@@ -137,7 +137,7 @@ export const RandomButton = styled.button`
     transition: all 0.3s;
 
     &:hover {
-        cursor: var(--custom-cursor-bag);
+        cursor: var(--custom-cursor-hover);
         background: rgba(221, 221, 221, 0.2);
     }
 `;
@@ -159,7 +159,7 @@ export const GoButton = styled.button`
     transition: all 0.3s;
 
     &:hover {
-        cursor: var(--custom-cursor-bag);
+        cursor: var(--custom-cursor-hover);
         background: rgba(221, 221, 221, 0.2);
     }
 `;
