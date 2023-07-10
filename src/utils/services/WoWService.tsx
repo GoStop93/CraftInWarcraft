@@ -207,21 +207,103 @@ const getPetByName = async (name: string) => {
 
 };
 
-const getCreature = async () => {
+const getAllCreatures = async () => {
 
   if (!accessToken) {
     await getToken();
   }
+
+  const ids = [];
+  const maxId = 100000;
   
-  const url = `https://us.api.blizzard.com/data/wow/creature/42722?namespace=static-us&locale=en_US&access_token=${accessToken}`;
-  const creatures = await request(url, 'GET', null);
+  for (let id = 50001; id <= maxId; id++) {
+    const url = `https://us.api.blizzard.com/data/wow/creature/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
 
-  // console.log(creatures);
+    try {
+      await request(url, 'GET', null);
+      ids.push(id);
+    } catch (error) {
+      // Пропуск ошибок, если запрос возвращает ошибку
+      continue;
+    }
+  }
 
-  return {
-  };
+  return ids;
 
 };
+
+const getRandomCreature = async (id: number) => {
+
+  if (!accessToken) {
+    await getToken();
+  }
+
+  const url = `https://us.api.blizzard.com/data/wow/creature/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+  const creatureInfo = await request(url, 'GET', null);
+
+  const urlCreatureMedia = `https://us.api.blizzard.com/data/wow/media/creature-display/${creatureInfo.creature_displays[0].id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+  const creatureMedia = await request(urlCreatureMedia, 'GET', null);
+
+  const urlFamilyMedia = `https://us.api.blizzard.com/data/wow/media/creature-family/${creatureInfo.family.id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+  const familyMedia = await request(urlFamilyMedia, 'GET', null);
+
+
+  return {
+    name: creatureInfo.name,
+    family: creatureInfo.family.name,
+    type: creatureInfo.type.name,
+    creatureMedia: creatureMedia.assets[0].value,
+    familyMedia: familyMedia.assets[0].value,
+  }
+
+}
+
+const getCreature = async (name: string) => {
+
+  const lowercaseCreatureName = name.toLowerCase();
+
+  if (!accessToken) {
+    await getToken();
+  }
+
+  
+  const url = `https://us.api.blizzard.com/data/wow/search/creature?namespace=static-us&name.en_US=${name}&orderby=id&_page=1&access_token=${accessToken}`;
+
+  const creatureInfo = await request(url, 'GET', null);
+
+  let id: number | null = null;
+
+  creatureInfo.results.forEach((creature: any) => {
+    const creatureName = creature.data.name.en_US.toLowerCase()
+
+    if (creatureName.includes(lowercaseCreatureName)) {
+      id = creature.data.id;
+    }
+  });
+
+  if (id !== null) {
+    const url = `https://us.api.blizzard.com/data/wow/creature/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+    const creatureInfo = await request(url, 'GET', null);
+  
+    const urlCreatureMedia = `https://us.api.blizzard.com/data/wow/media/creature-display/${creatureInfo.creature_displays[0].id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+    const creatureMedia = await request(urlCreatureMedia, 'GET', null);
+  
+    const urlFamilyMedia = `https://us.api.blizzard.com/data/wow/media/creature-family/${creatureInfo.family.id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+    const familyMedia = await request(urlFamilyMedia, 'GET', null);
+  
+  
+    return {
+      name: creatureInfo.name,
+      family: creatureInfo.family.name,
+      type: creatureInfo.type.name,
+      creatureMedia: creatureMedia.assets[0].value,
+      familyMedia: familyMedia.assets[0].value,
+    }
+    
+  }
+
+};
+
 
   const transformItem = (item: any) => {
     return {
@@ -243,6 +325,7 @@ const getCreature = async () => {
     getPetAbility,
     getPetByName,
     getCreature,
+    getRandomCreature,
   };
 };
 

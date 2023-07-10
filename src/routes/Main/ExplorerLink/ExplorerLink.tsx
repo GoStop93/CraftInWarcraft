@@ -16,11 +16,11 @@ export const ExplorerLink = () => {
 
     const handleMouseEnter = () => {
         setRainFalling(true);
-      };
+    };
     
-      const handleMouseLeave = () => {
+    const handleMouseLeave = () => {
         setRainFalling(false);
-      };
+    };
 
     const duration = 2000;
 
