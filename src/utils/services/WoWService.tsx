@@ -207,30 +207,6 @@ const getPetByName = async (name: string) => {
 
 };
 
-const getAllCreatures = async () => {
-
-  if (!accessToken) {
-    await getToken();
-  }
-
-  const ids = [];
-  const maxId = 100000;
-  
-  for (let id = 50001; id <= maxId; id++) {
-    const url = `https://us.api.blizzard.com/data/wow/creature/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
-
-    try {
-      await request(url, 'GET', null);
-      ids.push(id);
-    } catch (error) {
-      // Пропуск ошибок, если запрос возвращает ошибку
-      continue;
-    }
-  }
-
-  return ids;
-
-};
 
 const getRandomCreature = async (id: number) => {
 
@@ -304,11 +280,106 @@ const getCreature = async (name: string) => {
 
 };
 
+const getItemClasses = async () => {
 
-  const transformItem = (item: any) => {
-    return {
-        url: item.value,
+  if (!accessToken) {
+    await getToken();
+  }
+
+  const ids = [];
+  const maxId = 1000;
+  
+  for (let id = 1; id <= maxId; id++) {
+    const url = `https://us.api.blizzard.com/data/wow/item/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+
+    try {
+      const item = await request(url, 'GET', null);
+      // if (item.item_class.name === "Reagent") {
+      //   console.log(item);
+      // }
+      ids.push(id);
+    } catch (error) {
+      continue;
     }
+  }
+
+  return ids;
+}
+
+const getRandomItem = async (id: number) => {
+
+  if (!accessToken) {
+    await getToken();
+  }
+
+    const url = `https://us.api.blizzard.com/data/wow/item/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+    const itemInfo = await request(url, 'GET', null);
+
+    const stats = itemInfo.preview_item.stats || []
+    const itemStats = stats.map((stat: any) => stat.display.display_string); 
+
+    const spells = itemInfo.preview_item.spells || []
+    const itemSpells = spells.map((spell: any) => spell.description); 
+
+    const requiresLevel = itemInfo.preview_item.requirements?.level?.display_string || null;
+    const itemLevel = itemInfo.preview_item?.level?.display_string || null;
+    const itemBinding = itemInfo.preview_item?.binding?.name || null;
+
+    const sellPrice = itemInfo?.preview_item?.sell_price || null;
+    const itemName = itemInfo?.preview_item?.name || null;
+    const itemSubclass = itemInfo?.preview_item?.inventory_type?.name || null;
+    const itemClass = itemInfo?.preview_item?.item_subclass?.name || null;
+
+    const weaponSpeed = itemInfo.preview_item?.weapon?.attack_speed?.display_string || null;
+    const weaponDamage = itemInfo.preview_item?.weapon?.damage?.display_string || null;
+    const weaponDps = itemInfo.preview_item?.weapon?.dps?.display_string || null;
+
+    const armor = itemInfo.preview_item?.armor?.display?.display_string || null;
+
+    const durability = itemInfo.preview_item?.durability?.display_string || null;
+    const quality = itemInfo.preview_item?.quality?.name || null;
+
+    const sellPriceHeader = sellPrice?.display_strings?.header || null;
+    const sellPriceGold = sellPrice?.display_strings?.gold || null;
+    const sellPriceSilver = sellPrice?.display_strings?.silver || null;
+    const sellPriceCopper = sellPrice?.display_strings?.copper || null;
+  
+
+    const urlMedia = `${itemInfo.preview_item.media.key.href}&access_token=${accessToken}`;
+    const itemMedia = await request(urlMedia, 'GET', null);
+
+    const icon = itemMedia?.assets[0]?.value || null;
+
+    console.log(itemInfo.preview_item);
+
+    return {
+      icon,
+      itemName,
+      itemLevel,
+      itemBinding,
+      itemSubclass,
+      itemClass,
+      weaponSpeed,
+      weaponDamage,
+      weaponDps,
+      durability,
+      stats: itemStats,
+      spells: itemSpells,
+      requiresLevel,
+      sellPriceHeader,
+      sellPriceGold,
+      sellPriceSilver,
+      sellPriceCopper,
+      quality,
+      armor,
+    }
+}
+
+
+const transformItem = (item: any) => {
+  return {
+      url: item.value,
+  }
 };
 
   
@@ -326,6 +397,8 @@ const getCreature = async (name: string) => {
     getPetByName,
     getCreature,
     getRandomCreature,
+    getItemClasses,
+    getRandomItem,
   };
 };
 
