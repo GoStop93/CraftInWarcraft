@@ -59,16 +59,6 @@ export const CreaturesTab = () => {
 
     const [errorMessage, setErrorMessage] = useState("");
 
-
-    // const fetchCreatureIds = async () => {
-    //     const ids = await getCreature();
-    //     if (ids.length === 0) {
-    //       console.log("Нет доступных идентификаторов существа.");
-    //     } else {
-    //       console.log(ids);
-    //     }
-    // };
-
     const fetchCreature = async (creatureName: string) => {
 
         try {
