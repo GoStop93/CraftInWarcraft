@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Form } from "formik";
 import background from '../../../../assets/images/background/explorer/explorer_tabs/items.jpg';
 import bottomBackground from '../../../../assets/images/background/explorer/second_background.jpg';
 import ground from '../../../../assets/images/ground.png';
@@ -13,9 +14,7 @@ export const StyledTopContent = styled.div`
   width: 100%;
   height: 49vh;
   position: relative;
-  background-image: url(${background});
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
   ::after {
     content: '';
     position: absolute;
@@ -31,6 +30,19 @@ export const StyledTopContent = styled.div`
   }
 `;
 
+export const StyledLayerBack = styled.div<{ offset: number}>`
+  height: 60vh;
+  margin-top: -20vh;
+  width: 100%;
+  position: absolute;
+  background: url(${background});
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+  z-index: 1;
+  transform: translate3d(0, ${props => props.offset/5}px, 0);
+`;
+
 export const StyledTitle = styled.div`
   position: absolute;
   top: 50%;
@@ -40,189 +52,152 @@ export const StyledTitle = styled.div`
   font-weight: 100;
   color: #fbee65;
   text-shadow: 7px 7px 3px black;
+  z-index: 2;
 `;
 
 export const StyledBottomContent = styled.div`
   display: flex;
-  width: 100%;
-  height: 200vh;
+  flex-direction: column;
+  min-height: 100vh;
   background-image: url(${bottomBackground});
   background-size: cover;
   background-position: center;
+  padding: 5vh 30vh;
+  gap: 7vh;
 `;
 
-export const StyledItems = styled.div`
+export const DemonHunterImage = styled.img`
+  height: 70vh;
+  transform: scaleX(-1);
+
+`;
+
+export const StyledNavigation = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+`;
+
+export const ItemInputBlock = styled.div`
   display: flex;
   position: relative;
-  margin-top: 10vh;
-  width: 80vh;
-  gap: 2vh;
-`;
-
-export const StyledItemIcon = styled.img<{ color: string}>`
-  width: 56px;
-  height: 56px;
-  border: 1px solid ${props => {
-    switch (props.color) {
-      case 'Common':
-        return '#fff';
-      case 'Poor':
-        return '#9d9d9d';
-      case 'Uncommon':
-        return '#1eff00';
-      case 'Rare':
-        return '#0070dd';
-      case 'Epic':
-        return '#a335ee';
-      case 'Legendary':
-        return '#ff8000';
-      default:
-        return '#fff';
-    }
-  }};
-`;
-
-export const StyledItemsInformation = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  min-width: 45vh;
-  height: fit-content;
-  padding: 2vh;
-  gap: 0.7vh;
   background: rgba(221, 221, 221, 0.1);
   border: 1px solid rgba(221, 221, 221, 0.15);
+  border-radius: 2vh;
+  padding: 1vh 1vh;
 `;
 
-export const StyledItemName = styled.div<{ color: string }>`
-  font-size: 3vh;
-  font-weight: 100;
-  color: ${props => {
-    switch (props.color) {
-      case 'Common':
-        return '#fff';
-      case 'Poor':
-        return '#9d9d9d';
-      case 'Uncommon':
-        return '#1eff00';
-      case 'Rare':
-        return '#0070dd';
-      case 'Epic':
-        return '#a335ee';
-      case 'Legendary':
-        return '#ff8000';
-      default:
-        return '#fff';
-    }
-  }};
-`;
-
-export const StyledItemLevel = styled.div`
-  color: rgb(255, 209, 0);
-  font-size: 2.5vh;
-  line-height: 2vh;
-  margin-top: 2vh;
-`;
-
-export const StyledItemMainText = styled.div<{ color?: any}>`
-  color: ${(props) => props.color? props.color : '#E0D3B8'};
-  font-size: 2.5vh;
-  line-height: 2vh;
-`;
-
-export const StyledSpellsText = styled.div`
-  color: #1eff00;
-  font-size: 2.5vh;
-  line-height: 2vh;
-`;
-
-export const StyledItemClassAndSubclass = styled.div`
+export const ItemRandomBlock = styled.div`
   display: flex;
-  justify-content: space-between;
+  text-align: center;
+  background: rgba(221, 221, 221, 0.1);
+  border: 1px solid rgba(221, 221, 221, 0.15);
+  border-radius: 2vh;
+  padding: 1vh 2vh;
 `;
 
-export const StyledItemDamageAndSpeed = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const StyledPrice = styled.div`
+export const StyledButtonAndTitle = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.3vh;
+  font-size: 2vh;
+  line-height: 2vh;
+  padding: 1vh;
+  color: #E1A42E;
+`;
+
+export const RandomButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4.5vh;
+  width: 15vh;
+  border-color: #F1B924;
+  border-radius: 8px;
+  background: rgba(221, 221, 221, 0.01);
+  z-index: 5;
+  transition: all 0.3s;
+
+  &:hover {
+    cursor: var(--custom-cursor-hover);
+    background: rgba(221, 221, 221, 0.2);
+  }
+`;
+
+export const ButtonText = styled.div`
+  font-size: 3vh;
+  padding: 6px 0;
+  margin-top: 0.2vh;
+  color: #F1B924;
+  font-family: warcraft;
+  text-shadow: 0 0 2px black;
+`;
+
+export const StyledItemContent= styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const StyledForm = styled(Form)`
+  display: flex;
+  height: 3.5vh;
+  gap: 5vh;
+`;
+
+export const StyledInputAndMessage = styled.div`
+  display: flex;
+`;
+
+export const StyledInput = styled.input`
+  border-color: #F1B924;
+  margin-top: 0.5vh;
+  background: rgba(221, 221, 221, 0.1);
   color: #E0D3B8;
-  font-size: 2.5vh;
-  line-height: 2vh;
-`;
 
-export const StyledPriceIcon = styled.img`
-  width: 13px;
-  height: 13px; 
-  margin-right: 0.5vh;
-`;
-
-export const StyledSockeBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 2vh 0;
-  gap: 1vh;
-`;
-
-export const StyledSocket = styled.div`
-  display: flex;
-  gap: 1vh;
-  color: #9d9d9d;
-  font-size: 2.5vh;
-  line-height: 2vh;
-`;
-
-export const StyledSocketImage = styled.img`
-  width: 14px;
-  height: 14px; 
-  margin-right: 0.5vh;
-`;
-
-export const StyledSocketBonus = styled.div`
-  color: #9d9d9d;
-  font-size: 2.5vh;
-  line-height: 2vh;
-`;
-
-export const StyledSetBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 2vh 0;
-  gap: 1vh;
-`;
-
-export const StyledSetName = styled.div`
-  color: #ffd100;
-  font-size: 2.5vh;
-  line-height: 2vh;
-`;
-
-export const StyledSet = styled.div`
-  margin-left: 1vh;
-  color: #9d9d9d;
   font-size: 2vh;
-  line-height: 2vh;
+  &:focus {
+      outline: none;
+  }
+  &:hover {
+      cursor: var(--custom-cursor-mail);
+  }
 `;
 
-export const StyledSetBonusBlock = styled.div`
+export const StyledErrorMessage = styled.div`
   display: flex;
+  text-align: start;
   flex-direction: column;
-  margin-top: 2vh;
-  gap: 1vh;
-`;
-
-export const StyledSetBonus = styled.div`
-  color: #9d9d9d;
+  position: absolute;
+  top: 6.5vh;
+  left: 22vh;
+  width: 40vh;
+  color: red;
   font-size: 2vh;
-  line-height: 2vh;
+  bottom: 1vh;
 `;
 
-export const StyledDescription = styled.div<{ recipe? : boolean }>`
-  color: ${(props) => props.recipe? '#1eff00' : 'rgb(255, 209, 0)'};
-  font-size: 2.5vh;
-  line-height: 2vh;
+export const GoButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -0.5vh;
+  width: 15vh;
+  height: 4.5vh;
+  border-color: #F1B924;
+  border-radius: 8px;
+  background: rgba(221, 221, 221, 0.01);
+  z-index: 5;
+  transition: all 0.3s;
+
+  &:hover {
+    cursor: var(--custom-cursor-hover);
+    background: rgba(221, 221, 221, 0.2);
+  }
+`;
+
+export const StyledNavigationText = styled.div`
+  text-align: start;
+  font-size: 3vh;
+  width: 20vh;
+  height: auto;
+  color: #E1A42E;
 `;

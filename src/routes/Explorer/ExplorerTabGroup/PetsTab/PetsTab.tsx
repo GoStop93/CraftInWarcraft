@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Formik, useField } from 'formik';
 import * as Yup from 'yup';
 import useWowService from "../../../../utils/services/WoWService";
+import { ITabProps } from "../type";
 import { IPetsTabProps } from "./type";
 import { PetsAbility } from "./PetsAbility/PetsAbility";
 import { petsIds } from "./data";
@@ -33,9 +34,10 @@ import {
     StyledForm,
     StyledInput,
     StyledErrorMessage,
+    StyledLayerBack,
 } from "./PetsTab.styles"
 
-export const PetsTab = () => {
+export const PetsTab = ({ offset }: ITabProps) => {
 
     const { getPet, getPetByName, loading } = useWowService();
 
@@ -93,6 +95,7 @@ export const PetsTab = () => {
     return (
         <StyledContainer>
             <StyledTopContent>
+                <StyledLayerBack offset={offset}></StyledLayerBack>
                 <StyledTitle>Pets</StyledTitle>
             </StyledTopContent>
             <StyledBottomContent>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Formik, useField } from 'formik';
 import * as Yup from 'yup';
 import useWowService from "../../../../utils/services/WoWService";
+import { ITabProps } from "../type";
 import { dungeonIds } from "./data";
 import { IDungeonsTabProps } from "./type";
 import Loading from '../../../../assets/icons/loading/loading.gif';
@@ -38,12 +39,14 @@ import {
     StyledEncounterText,
     StyledEncounterTitle,
     StyledChoImage,
+    StyledLayerBack,
 } from "./DungeonsTab.styles"
 
-export const DungeonsTab = () => {
+export const DungeonsTab = ({ offset }: ITabProps) => {
     const [errorMessage, setErrorMessage] = useState("");
 
     const { getInstance, getInstanceByName, loading } = useWowService();
+
 
     const [dungeonName, setDungeonName] = useState("");
     const [dungeonDescription, setDungeonDescription] = useState("");
@@ -83,10 +86,6 @@ export const DungeonsTab = () => {
         }
     };
 
-    useEffect(() => {
-        fetchRandomInstance();
-    }, []);
-
     const MyTextInput = ({ ...props }: IDungeonsTabProps) => {
         const [field, meta] = useField(props.name);
     
@@ -100,9 +99,14 @@ export const DungeonsTab = () => {
         )
     }
 
+    useEffect(() => {
+        fetchRandomInstance();
+    }, []);
+
     return (
         <StyledContainer>
             <StyledTopContent>
+                <StyledLayerBack offset={offset}></StyledLayerBack>
                 <StyledTitle>Dungeons</StyledTitle>
             </StyledTopContent>
             <StyledBottomContent>

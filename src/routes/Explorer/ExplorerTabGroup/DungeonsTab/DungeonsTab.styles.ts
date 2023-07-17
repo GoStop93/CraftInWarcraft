@@ -15,9 +15,7 @@ export const StyledTopContent = styled.div`
     width: 100%;
     height: 49vh;
     position: relative;
-    background-image: url(${background});
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
     ::after {
         content: '';
         position: absolute;
@@ -33,6 +31,19 @@ export const StyledTopContent = styled.div`
     }
 `;
 
+export const StyledLayerBack = styled.div<{ offset: number}>`
+  height: 60vh;
+  margin-top: -20vh;
+  width: 100%;
+  position: absolute;
+  background: url(${background});
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+  z-index: 1;
+  transform: translate3d(0, ${props => props.offset/5}px, 0);
+`;
+
 export const StyledTitle = styled.div`
     position: absolute;
     top: 50%;
@@ -42,6 +53,7 @@ export const StyledTitle = styled.div`
     font-weight: 100;
     color: #fbee65;
     text-shadow: 7px 7px 3px black;
+    z-index: 2;
 `;
 
 export const StyledBottomContent = styled.div`

@@ -130,9 +130,9 @@ export const StyledAnduinImage = styled.img`
 
 export const StyledBranImage = styled.img`
     position: absolute;
-    width: 40vh;
+    width: 45vh;
     top: 2vh;
-    right: 40vh;
+    right: 35vh;
 `;
 
 export const StyledText = styled.div`

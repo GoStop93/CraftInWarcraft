@@ -4,7 +4,8 @@ import { CSSTransition } from "react-transition-group";
 import { Formik, useField } from 'formik';
 import { creaturesIds } from "./data";
 import { ICreaturesTabProps } from "./type";
-import Loading from '../../../../assets/icons/loading/guldan_loading.gif';
+import { ITabProps } from "../type";
+import Loading from '../../../../assets/icons/loading/loading_dragon.gif';
 import Demon from '../../../../assets/images/explorer/creatures/demon.png';
 import Imp from '../../../../assets/images/explorer/creatures/imp.png';
 import { 
@@ -35,9 +36,10 @@ import {
     GoButton,
     ButtonText,
     StyledInputAndMessage,
+    StyledLayerBack,
 } from "./CreaturesTab.styles";
 
-export const CreaturesTab = () => {
+export const CreaturesTab = ({ offset }: ITabProps) => {
 
     const { getCreature, getRandomCreature, loading } = useWowService();
 
@@ -131,6 +133,7 @@ export const CreaturesTab = () => {
     return (
         <StyledContainer>
             <StyledTopContent>
+                <StyledLayerBack offset={offset}></StyledLayerBack>
                 <StyledTitle>Creatures</StyledTitle>
             </StyledTopContent>
             <StyledBottomContent>

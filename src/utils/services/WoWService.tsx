@@ -25,20 +25,14 @@ const useWowService = () => {
     accessToken = response.access_token;
   };
 
-  const getRandomItemIcon = async () => {
+  const getRandomItemIcon = async (id: number) => {
 
     if (!accessToken) {
       await getToken();
     }
 
-    const excludedNumbers = [19014, 19015, 19021, 19053, 19063, 19072, 19073, 19074, 19075, 19076, 19077, 19078, 19079, 19080, 19081, 19082, 19122, 19158, 19161];
-    let randomNumber;
-
-    do {
-      randomNumber = Math.floor(Math.random() * (19170 - 19002 + 1)) + 19002;
-    } while (excludedNumbers.includes(randomNumber));
   
-    const url = `https://us.api.blizzard.com/data/wow/media/item/${randomNumber}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
+    const url = `https://us.api.blizzard.com/data/wow/media/item/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
 
     const itemIcon = await request(url, 'GET', null);
 
@@ -244,7 +238,6 @@ const getCreature = async (name: string) => {
 
   
   const url = `https://us.api.blizzard.com/data/wow/search/creature?namespace=static-us&name.en_US=${name}&orderby=id&_page=1&access_token=${accessToken}`;
-
   const creatureInfo = await request(url, 'GET', null);
 
   let id: number | null = null;
@@ -280,29 +273,6 @@ const getCreature = async (name: string) => {
 
 };
 
-const getItemClasses = async () => {
-
-  if (!accessToken) {
-    await getToken();
-  }
-
-  const ids = [];
-  const maxId = 100000;
-  
-  for (let id = 50001; id <= maxId; id++) {
-    const url = `https://us.api.blizzard.com/data/wow/item/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
-
-    try {
-      const item = await request(url, 'GET', null);
-      ids.push(id);
-    } catch (error) {
-      continue;
-    }
-  }
-
-  return ids;
-}
-
 const getRandomItem = async (id: number) => {
 
   if (!accessToken) {
@@ -312,10 +282,10 @@ const getRandomItem = async (id: number) => {
   const url = `https://us.api.blizzard.com/data/wow/item/${id}?namespace=static-us&locale=en_US&access_token=${accessToken}`;
   const itemInfo = await request(url, 'GET', null);
 
-  const stats = itemInfo.preview_item.stats || [];
+  const stats = itemInfo.preview_item?.stats || [];
   const itemStats = stats.map((stat: any) => stat.display.display_string); 
 
-  const spells = itemInfo.preview_item.spells || [];
+  const spells = itemInfo.preview_item?.spells || [];
   const itemSpells = spells.map((spell: any) => spell.description); 
 
   const setItems = itemInfo?.preview_item?.set?.items || [];
@@ -327,6 +297,9 @@ const getRandomItem = async (id: number) => {
   const sockets = itemInfo.preview_item.sockets || [];
   const itemSockets = sockets.map((socket: any) => socket.socket_type.name);
 
+  const playableClasses = itemInfo.preview_item?.requirements?.playable_classes?.links  || [];
+  const itemPlayableClasses = playableClasses.map((playableClass: any) => playableClass.name);
+
   const requiresLevel = itemInfo.preview_item.requirements?.level?.display_string || null;
   const requiresSkill = itemInfo.preview_item.requirements?.skill?.display_string || null;
   const itemLevel = itemInfo.preview_item?.level?.display_string || null;
@@ -335,6 +308,10 @@ const getRandomItem = async (id: number) => {
 
   const sellPrice = itemInfo?.preview_item?.sell_price || null;
   const itemName = itemInfo?.preview_item?.name || null;
+  const itemNameDescription = itemInfo.preview_item?.name_description?.display_string || null;
+  const itemNameDescriptionR = itemInfo.preview_item?.name_description?.color?.r ?? null;
+  const itemNameDescriptionG = itemInfo.preview_item?.name_description?.color?.g ?? null;
+  const itemNameDescriptionB = itemInfo.preview_item?.name_description?.color?.b ?? null;
   const itemSubclass = itemInfo?.preview_item?.inventory_type?.name || null;
   const itemClass = itemInfo?.preview_item?.item_subclass?.name || null;
   const itemType = itemInfo?.preview_item?.item_class?.name || null;
@@ -345,6 +322,16 @@ const getRandomItem = async (id: number) => {
   const weaponDps = itemInfo.preview_item?.weapon?.dps?.display_string || null;
 
   const armor = itemInfo.preview_item?.armor?.display?.display_string || null;
+
+  const charges = itemInfo.preview_item?.charges?.display_string || null;
+
+  const toy = itemInfo.preview_item?.toy || null;
+
+  const unique = itemInfo.preview_item?.unique_equipped || null;
+  const limitCategory = itemInfo.preview_item?.limit_category || null;
+  const expiration = itemInfo.preview_item?.expiration_time_left?.display_string || null;
+
+  const gemProperties = itemInfo.preview_item?.gem_properties?.effect || null;
 
   const durability = itemInfo.preview_item?.durability?.display_string || null;
   const quality = itemInfo.preview_item?.quality?.name || null;
@@ -358,6 +345,19 @@ const getRandomItem = async (id: number) => {
 
   const setName = itemInfo.preview_item?.set?.display_string || null;
 
+  const recipeItemId = itemInfo.preview_item?.recipe?.item?.item?.id || null;
+
+
+  const reagents = itemInfo.preview_item.recipe?.reagents;
+  let reagentData = [];
+  if (reagents) {
+    reagentData = reagents.map((reagent: any) => {
+      const name = reagent.reagent.name;
+      const quantity = reagent.quantity;
+      return { name, quantity };
+    });
+  }
+
   const itemStatsColor = stats.map((stat: any) => {
     if (stat.display.color.r === 0 && stat.display.color.g === 255 && stat.display.color.b === 0) {
       return '#1eff00';
@@ -366,14 +366,13 @@ const getRandomItem = async (id: number) => {
     }
   });
 
-
   const urlMedia = `${itemInfo.preview_item.media.key.href}&access_token=${accessToken}`;
   const itemMedia = await request(urlMedia, 'GET', null);
 
   const icon = itemMedia?.assets[0]?.value || null;
-  // console.log(id);
-  console.log(itemInfo.preview_item);
-  console.log(requiresSkill)
+
+  // console.log(itemInfo.preview_item.charges.display_string);
+
 
   return {
     icon,
@@ -404,9 +403,49 @@ const getRandomItem = async (id: number) => {
     itemDescription,
     itemType,
     requiresSkills: requiresSkill,
+    recipeItemId,
+    reagentData,
+    toy,
+    gemProperties,
+    itemNameDescription,
+    itemNameDescriptionR,
+    itemNameDescriptionG,
+    itemNameDescriptionB,
+    unique,
+    expiration,
+    limitCategory,
+    playableClasses: itemPlayableClasses,
+    charges,
   }
 }
 
+const getItem = async (item: string) => {
+
+  const lowercaseItem= item.toLowerCase();
+
+  if (!accessToken) {
+    await getToken();
+  }
+
+  const url = `https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&name.en_US=${item}&orderby=id&_page=1&access_token=${accessToken}`;
+  const itemInfo = await request(url, 'GET', null);
+
+  let id: number | null = null;
+
+  itemInfo.results.forEach((item: any) => {
+    const itemName = item.data.name.en_US.toLowerCase();
+
+    if (itemName.includes(lowercaseItem)) {
+      id = item.data.id;
+    }
+  });
+
+  if (id !== null) {
+    return {
+      id,
+    }
+  }
+};
 
 const transformItem = (item: any) => {
   return {
@@ -429,8 +468,8 @@ const transformItem = (item: any) => {
     getPetByName,
     getCreature,
     getRandomCreature,
-    getItemClasses,
     getRandomItem,
+    getItem,
   };
 };
 
