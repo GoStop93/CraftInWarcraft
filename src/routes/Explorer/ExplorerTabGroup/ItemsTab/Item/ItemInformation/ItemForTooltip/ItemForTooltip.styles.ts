@@ -8,7 +8,7 @@ export const StyledItemsInformation = styled.div`
   height: fit-content;
   padding: 2vh;
   gap: 0.7vh;
-  background: rgba(221, 221, 221, 0.1);
+  background: #070B1F;
   border: 1px solid rgba(221, 221, 221, 0.15);
 `;
 
@@ -47,3 +47,6 @@ export const StyledRecipeItem = styled.div`
   margin: 3vh 0;
 `;
 
+export const StyledLoading = styled.img`
+  height: 60vh;
+`;

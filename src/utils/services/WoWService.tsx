@@ -288,8 +288,8 @@ const getRandomItem = async (id: number) => {
   const spells = itemInfo.preview_item?.spells || [];
   const itemSpells = spells.map((spell: any) => spell.description); 
 
-  const setItems = itemInfo?.preview_item?.set?.items || [];
-  const itemSetItems = setItems.map((item: any) => item.item.name);
+  // const setItems = itemInfo?.preview_item?.set?.items || [];
+  // const itemSetItems = setItems.map((item: any) => item.item.name);
 
   const setBonuses = itemInfo.preview_item?.set?.effects || [];
   const itemSetBonuses = setBonuses.map((bouns: any) => bouns.display_string);
@@ -353,8 +353,19 @@ const getRandomItem = async (id: number) => {
   if (reagents) {
     reagentData = reagents.map((reagent: any) => {
       const name = reagent.reagent.name;
+      const id = reagent.reagent.id;
       const quantity = reagent.quantity;
-      return { name, quantity };
+      return { name, quantity, id };
+    });
+  }
+
+  const setItems = itemInfo?.preview_item?.set?.items;
+  let setItemsData = [];
+  if (setItems) {
+    setItemsData = setItems.map((item: any) => {
+      const name = item.item.name;
+      const id = item.item.id;
+      return { name, id };
     });
   }
 
@@ -371,7 +382,7 @@ const getRandomItem = async (id: number) => {
 
   const icon = itemMedia?.assets[0]?.value || null;
 
-  // console.log(itemInfo.preview_item.charges.display_string);
+  console.log(itemInfo.preview_item);
 
 
   return {
@@ -398,7 +409,6 @@ const getRandomItem = async (id: number) => {
     sockets: itemSockets,
     socketBonus,
     setName,
-    setItems: itemSetItems,
     setBonuses: itemSetBonuses,
     itemDescription,
     itemType,
@@ -416,6 +426,7 @@ const getRandomItem = async (id: number) => {
     limitCategory,
     playableClasses: itemPlayableClasses,
     charges,
+    setItemsData,
   }
 }
 

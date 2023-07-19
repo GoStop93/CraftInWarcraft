@@ -30,7 +30,7 @@ import {
 
 export const ItemsTab = ({ offset }: ITabProps) => {
 
-    const { getItem } = useWowService();
+    const { getItem} = useWowService();
 
     const [randomId, setRandomId] = useState<number>();
     const [errorMessage, setErrorMessage] = useState("");

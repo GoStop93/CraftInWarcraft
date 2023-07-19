@@ -2,57 +2,60 @@ import { useEffect, useState } from "react";
 import useWowService from "../../../../../utils/services/WoWService";
 import { IItemProps } from "./type";
 import { ItemInformation } from "./ItemInformation/ItemInformation";
-import Loading from '../../../../../assets/icons/loading/guldan_loading.gif';
+import { ItemInformationForTooltip } from "./ItemInformation/ItemForTooltip/ItemInformationForTooltip/ItemInformationForTooltip";
 import { 
     StyledItems,
     StyledItemIcon,
     StyledItemsInformation,
     StyledRecipeItem,
-    StyledLoading,
 } from "./Item.styles";
 
 export const Item = ({ id }: IItemProps) => {
     
-    const { getRandomItem, loading } = useWowService();
+  const { getRandomItem } = useWowService();
 
-    const [itemIcon, setItemIcon] = useState("");
-    const [itemQuality, setItemQuality] = useState("");
-    const [recipeItemId, setRecipeItemId] = useState<number | undefined>();
+  const [itemIcon, setItemIcon] = useState("");
+  const [itemId] = useState<any>(id);
 
-    const fetchRandomItem = async () => {
+  const [itemQuality, setItemQuality] = useState("");
+  const [recipeItemId, setRecipeItemId] = useState<number | undefined>();
 
-        const item = await getRandomItem(id);
+  const fetchRandomItem = async (itemId: any) => {
+    const item = await getRandomItem(itemId);
+ 
+    setItemIcon(item.icon);
+    setItemQuality(item.quality);
+    setRecipeItemId(item.recipeItemId);
+  };
 
-        setItemIcon(item.icon);
-        setItemQuality(item.quality);
-        setRecipeItemId(item.recipeItemId);
-    };
+  const setItemData = (itemData: any) => {
+    setItemIcon(itemData.icon);
+    setItemQuality(itemData.quality);
+    setItemIcon(itemData.icon);
+    setItemQuality(itemData.quality);
+    setRecipeItemId(itemData.recipeItemId);
+  };
 
-    useEffect(() => {
-        if(id) {
-            fetchRandomItem();
-        }
-    }, [id])
+  useEffect(() => {
+      if(itemId) {
+          fetchRandomItem(itemId);
+      }
+  }, [itemId])
+  
 
-    return (
-        <>
-        {loading ? (
-          <StyledLoading src={Loading} />
-        ) : (
-          <StyledItems>
-            {itemIcon ? (
-              <StyledItemIcon color={itemQuality} src={itemIcon} />
-            ) : null}
-            <StyledItemsInformation>
-              <ItemInformation id={id} />
-              {recipeItemId ? (
-                <StyledRecipeItem>
-                  <ItemInformation id={recipeItemId} />
-                </StyledRecipeItem>
-              ) : null}
-            </StyledItemsInformation>
-          </StyledItems>
-        )}
-      </>
-    );
+  return (
+    <StyledItems>
+      {itemIcon ? (
+        <StyledItemIcon color={itemQuality} src={itemIcon}/>
+      ) : null}
+      <StyledItemsInformation>
+        <ItemInformation id={id} onItemChange={setItemData} />
+        {recipeItemId ? (
+          <StyledRecipeItem>
+            <ItemInformationForTooltip recipe id={recipeItemId} />
+          </StyledRecipeItem>
+        ) : null}
+      </StyledItemsInformation>
+    </StyledItems>
+  );
 };

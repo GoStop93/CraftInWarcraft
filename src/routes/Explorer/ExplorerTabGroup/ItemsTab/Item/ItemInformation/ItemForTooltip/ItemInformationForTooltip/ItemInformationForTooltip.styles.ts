@@ -108,8 +108,6 @@ export const StyledSetName = styled.div`
 `;
 
 export const StyledSet = styled.div`
-  display: flex;
-  width: fit-content;
   margin-left: 1vh;
   color: #9d9d9d;
   font-size: 2vh;
@@ -198,12 +196,4 @@ export const StyledPlayableClass = styled.div<{ playableClasse: string}>`
   }};
   font-size: 2.5vh;
   line-height: 2vh;
-`;
-
-export const StyledToolTipContainer = styled.div`
-  transform: scale(0.8);
-`;
-
-export const StyledLoading = styled.img`
-  height: 60vh;
 `;
