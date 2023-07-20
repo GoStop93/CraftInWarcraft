@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import { Helmet } from 'react-helmet';
 import { AvailableClasses } from "./AvailableClasses/AvailableClasses";
 import { RacialTraits } from "./RacialTraits/RacialTraits";
 import { RaceInformation } from "./RaceInformation/RaceInformation";
@@ -73,59 +73,61 @@ const Race = () => {
     }, []);
 
     return !raceInfo ? null : (
-        <StyledContainer>
-            <StyledHeader>
-                <StyledImageLeft 
-                    src={raceInfo.imageLeft} 
-                    offset={offset}
-                    leftHeight={raceInfo.leftHeight}
-                    left={raceInfo.left}
-                    isHovered={isHovered}
-                    color={raceInfo.color}
-                />
-                <StyledImageRight 
-                    src={raceInfo.imageRight} 
-                    offset={offset}
-                    rightHeight={raceInfo.rightHeight} 
-                    right={raceInfo.right}
-                    isHovered={isHovered}
-                    color={raceInfo.color}
-                />
-                <StyledLayerBack background={raceInfo.backgroundImageFirst} offset={offset} />
-                <StyledTitle offset={offset}>
-                    <StyledFactionIcon src={raceInfo.fractionIcon} />
-                    <StyledRaceName>{raceInfo.text ? raceInfo.text : formattedRaceName}</StyledRaceName>
-                </StyledTitle>
-                <BackButton
-                    position={isButtonFixed} 
-                    color={raceInfo.secondColor}
-                    onClick={navigateBack} 
-                >
-                    <BackButtonImage src={BackIcon} />
-                    <BackButtonText>Back</BackButtonText>
-                </BackButton>
-            </StyledHeader>
-            <StyledContent background={raceInfo.backgroundImageSecond}>
-                <StyledRaceLogo 
-                    src={raceInfo.raceIcon}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                />
-                <StyledDescriptionBlock>
-                    <Line />
-                    <StyledDescriptionText>{raceInfo.description}</StyledDescriptionText>
-                    <Line />
-                </StyledDescriptionBlock>
-                <StyledClassesAndTraits>
-                    <AvailableClasses classes={raceInfo.availableClasses} />
-                    <RacialTraits traits={raceInfo.racialTraits}/>
-                </StyledClassesAndTraits>
-                <RaceInformation 
-                    color={raceInfo.color} 
-                    raceAdditionalInformation={raceInfo.raceAdditionalInformation} 
-                />
-            </StyledContent>
-        </StyledContainer>
+        <>
+            <Helmet>
+                <title>{raceInfo.text ? raceInfo.text : formattedRaceName}</title>
+                <link rel="icon" href="/favicons/race.ico" />
+            </Helmet>
+            <StyledContainer>
+                <StyledHeader>
+                    <StyledImageLeft
+                        src={raceInfo.imageLeft}
+                        offset={offset}
+                        leftHeight={raceInfo.leftHeight}
+                        left={raceInfo.left}
+                        isHovered={isHovered}
+                        color={raceInfo.color} />
+                    <StyledImageRight
+                        src={raceInfo.imageRight}
+                        offset={offset}
+                        rightHeight={raceInfo.rightHeight}
+                        right={raceInfo.right}
+                        isHovered={isHovered}
+                        color={raceInfo.color} />
+                    <StyledLayerBack background={raceInfo.backgroundImageFirst} offset={offset} />
+                    <StyledTitle offset={offset}>
+                        <StyledFactionIcon src={raceInfo.fractionIcon} />
+                        <StyledRaceName>{raceInfo.text ? raceInfo.text : formattedRaceName}</StyledRaceName>
+                    </StyledTitle>
+                    <BackButton
+                        position={isButtonFixed}
+                        color={raceInfo.secondColor}
+                        onClick={navigateBack}
+                    >
+                        <BackButtonImage src={BackIcon} />
+                        <BackButtonText>Back</BackButtonText>
+                    </BackButton>
+                </StyledHeader>
+                <StyledContent background={raceInfo.backgroundImageSecond}>
+                    <StyledRaceLogo
+                        src={raceInfo.raceIcon}
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)} />
+                    <StyledDescriptionBlock>
+                        <Line />
+                        <StyledDescriptionText>{raceInfo.description}</StyledDescriptionText>
+                        <Line />
+                    </StyledDescriptionBlock>
+                    <StyledClassesAndTraits>
+                        <AvailableClasses classes={raceInfo.availableClasses} />
+                        <RacialTraits traits={raceInfo.racialTraits} />
+                    </StyledClassesAndTraits>
+                    <RaceInformation
+                        color={raceInfo.color}
+                        raceAdditionalInformation={raceInfo.raceAdditionalInformation} />
+                </StyledContent>
+            </StyledContainer>
+        </>
     );
 };
 

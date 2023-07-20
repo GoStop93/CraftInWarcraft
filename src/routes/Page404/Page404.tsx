@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import { Helmet } from 'react-helmet';
 import { 
     StyledContainer, 
     StyledContent, 
@@ -23,13 +23,19 @@ const Page404 = () => {
     };
 
     return (
-        <StyledContainer>
-            <StyledContent>
-                <StyledTitle>You are not prepared</StyledTitle>
-                <StyledSubtitle>404</StyledSubtitle>
-                <StyledButton onClick={handleHover}> Back to main page</StyledButton>
-            </StyledContent>
-        </StyledContainer>
+        <>
+            <Helmet>
+                <title>404</title>
+                <link rel="icon" href="/favicons/404.ico" />
+            </Helmet>
+            <StyledContainer>
+                <StyledContent>
+                    <StyledTitle>You are not prepared</StyledTitle>
+                    <StyledSubtitle>404</StyledSubtitle>
+                    <StyledButton onClick={handleHover}> Back to main page</StyledButton>
+                </StyledContent>
+            </StyledContainer>
+        </>
     );
 };
 

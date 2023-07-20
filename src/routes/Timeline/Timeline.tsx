@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import ReactPlayer from 'react-player';
 import { ProjectCardEnum } from './type';
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
@@ -108,71 +109,75 @@ const TimeLine = () => {
     }, []);
 
     return (
-        <StyledContainer>
-            {isBackDisabled ? null : (
-                <StyledPrev onClick={handlePrevSlide}>
-                    <StyledPrevIcon src={PrevIcon} />
-                </StyledPrev>
-            )}
-            {isNextDisabled ? null : (
-                <StyledNext onClick={handleNextSlide}>
-                    <StyledNextIcon src={NextIcon} />
-                </StyledNext>
-            )}
-            <TopContent background={currentSlide.background} />
-            <TimelineNavigation 
-                dataSlides={dataSlides} 
-                currentSlideId={currentSlideId}
-                activeIndex={activeIndex}
-                onItemClick={handleNavigationItemClick} 
-            />
-            <BottomContent>
-                <BottomContainer>
-                    <StyledContainerCard onClick={onCardFlipHandler}>
-                        <StyledCard stateCard={stateCard}>
-                            <BottomImage background={currentSlide.image} />
-                            <StyledVideo>
-                                {currentSlide.url ? (
-                                    <>
-                                        <StyledVideoTitle hovered={hovered}>Cinematic Trailer</StyledVideoTitle>
-                                        <BackPlayContent
-                                            onMouseEnter={handleMouseEnter}
-                                            onMouseLeave={handleMouseLeave}
-                                            onClick={openModal}
-                                            background={currentSlide.videoBackground}
-                                            style={stateCard === ProjectCardEnum.FLIPPED ? { pointerEvents: "none" } : {}}
-                                        >
-                                            <StyledPlayIcon color={hovered ? '#FF0000' : '#F1B924'} />
-                                        </BackPlayContent>
-                                    </>
-                                ): (
-                                    <>
-                                        <StyledBackImage src={BackImage} />
-                                        <StyledBackCardText>
+        <>
+            <Helmet>
+                <title>Timeline</title>
+                <link rel="icon" href="/favicons/timeline.ico" />
+            </Helmet>
+            <StyledContainer>
+                {isBackDisabled ? null : (
+                    <StyledPrev onClick={handlePrevSlide}>
+                        <StyledPrevIcon src={PrevIcon} />
+                    </StyledPrev>
+                )}
+                {isNextDisabled ? null : (
+                    <StyledNext onClick={handleNextSlide}>
+                        <StyledNextIcon src={NextIcon} />
+                    </StyledNext>
+                )}
+                <TopContent background={currentSlide.background} />
+                <TimelineNavigation
+                    dataSlides={dataSlides}
+                    currentSlideId={currentSlideId}
+                    activeIndex={activeIndex}
+                    onItemClick={handleNavigationItemClick} />
+                <BottomContent>
+                    <BottomContainer>
+                        <StyledContainerCard onClick={onCardFlipHandler}>
+                            <StyledCard stateCard={stateCard}>
+                                <BottomImage background={currentSlide.image} />
+                                <StyledVideo>
+                                    {currentSlide.url ? (
+                                        <>
+                                            <StyledVideoTitle hovered={hovered}>Cinematic Trailer</StyledVideoTitle>
+                                            <BackPlayContent
+                                                onMouseEnter={handleMouseEnter}
+                                                onMouseLeave={handleMouseLeave}
+                                                onClick={openModal}
+                                                background={currentSlide.videoBackground}
+                                                style={stateCard === ProjectCardEnum.FLIPPED ? { pointerEvents: "none" } : {}}
+                                            >
+                                                <StyledPlayIcon color={hovered ? '#FF0000' : '#F1B924'} />
+                                            </BackPlayContent>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <StyledBackImage src={BackImage} />
+                                            <StyledBackCardText>
                                                 We're going to use this extra bandwidth to run an ajax request and force the CDN to put the page you're looking for right above the fold... aaaaand it's gone. Your page is gone. Poof. It's all gone.
-                                        </StyledBackCardText>
-                                    </>
-                                )}
-                            </StyledVideo>
-                        </StyledCard>
-                    </StyledContainerCard>
-                    <BottomTextContent>
-                        <StyledTitile>{currentSlide.title}</StyledTitile>
-                        <StyledText>{currentSlide.text}</StyledText>
-                    </BottomTextContent>
-                </BottomContainer>
-            </BottomContent>
-            {modalIsOpen ? (
-                <ModalWindow medium hasBackground onCloseHandler={closeModal}>
-                    <ReactPlayer
-                        url={currentSlide.url}
-                        width="718px"
-                        height="404px"
-                        controls
-                    />
-                </ModalWindow>
-            ): null }
-        </StyledContainer>
+                                            </StyledBackCardText>
+                                        </>
+                                    )}
+                                </StyledVideo>
+                            </StyledCard>
+                        </StyledContainerCard>
+                        <BottomTextContent>
+                            <StyledTitile>{currentSlide.title}</StyledTitile>
+                            <StyledText>{currentSlide.text}</StyledText>
+                        </BottomTextContent>
+                    </BottomContainer>
+                </BottomContent>
+                {modalIsOpen ? (
+                    <ModalWindow medium hasBackground onCloseHandler={closeModal}>
+                        <ReactPlayer
+                            url={currentSlide.url}
+                            width="718px"
+                            height="404px"
+                            controls />
+                    </ModalWindow>
+                ) : null}
+            </StyledContainer>
+        </>
     );
 };
 

@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet';
 import { 
     StyledContainer, 
     StyledHeader, 
@@ -43,39 +44,43 @@ const Class = () => {
       }, [classInfo, id, navigate]);
 
     return !classInfo ? null :(
-        <StyledContainer background={classInfo.backgroundImage}>
-            <StyledHeader color={classInfo.textColor}>{formattedClassName}</StyledHeader>
-            <BackButton onClick={navigateBack}>
-                <ChevronLeftIcon color={classInfo.textColor}/>
-                <StyledButtonText color={classInfo.textColor}>Back</StyledButtonText>
-            </BackButton>
-            <StyledContent>
-                <StyledClassImage 
-                    src={classInfo.classImage} 
-                    alt={formattedClassName} 
-                    width={classInfo.width}
-                    left={classInfo.left}
-                    top={classInfo.top}
-                />
-                <StyledInfo>
-                    <StyledInfoTitle>Class information</StyledInfoTitle>
-                    <StyledInfoText>{classInfo.classDescription}</StyledInfoText>
-                </StyledInfo>
-                <StyledSpecializationContainer>
-                    <StyledClassEmblem src={classInfo.classEmblem}/>
-                    <StyledSpecializationCards>
-                        {classInfo.specializations.map((specialization) => (
-                            <SpecializationCard
-                                key={specialization.name}
-                                name={specialization.name}
-                                text={specialization.text}
-                                icon={specialization.icon}
-                            />
-                        ))}
-                    </StyledSpecializationCards>
-                </StyledSpecializationContainer>
-            </StyledContent>
-        </StyledContainer>
+        <>
+            <Helmet>
+                <title>{formattedClassName}</title>
+                <link rel="icon" href="/favicons/class.ico" />
+            </Helmet>
+            <StyledContainer background={classInfo.backgroundImage}>
+                <StyledHeader color={classInfo.textColor}>{formattedClassName}</StyledHeader>
+                <BackButton onClick={navigateBack}>
+                    <ChevronLeftIcon color={classInfo.textColor} />
+                    <StyledButtonText color={classInfo.textColor}>Back</StyledButtonText>
+                </BackButton>
+                <StyledContent>
+                    <StyledClassImage
+                        src={classInfo.classImage}
+                        alt={formattedClassName}
+                        width={classInfo.width}
+                        left={classInfo.left}
+                        top={classInfo.top} />
+                    <StyledInfo>
+                        <StyledInfoTitle>Class information</StyledInfoTitle>
+                        <StyledInfoText>{classInfo.classDescription}</StyledInfoText>
+                    </StyledInfo>
+                    <StyledSpecializationContainer>
+                        <StyledClassEmblem src={classInfo.classEmblem} />
+                        <StyledSpecializationCards>
+                            {classInfo.specializations.map((specialization) => (
+                                <SpecializationCard
+                                    key={specialization.name}
+                                    name={specialization.name}
+                                    text={specialization.text}
+                                    icon={specialization.icon} />
+                            ))}
+                        </StyledSpecializationCards>
+                    </StyledSpecializationContainer>
+                </StyledContent>
+            </StyledContainer>
+        </>
     );
 };
 

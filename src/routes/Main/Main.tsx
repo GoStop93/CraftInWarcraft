@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Helmet } from 'react-helmet';
 import { CSSTransition } from "react-transition-group";
 import { 
     StyledContainer, 
@@ -39,7 +40,7 @@ const Main = () => {
     }, []);
 
     useEffect(() => {
-        if (offset > 1500) { // Change the scroll threshold as needed
+        if (offset > 1500) { 
           setShowButton(true);
         } else {
           setShowButton(false);
@@ -54,21 +55,26 @@ const Main = () => {
       };
 
     return (
-        <StyledContainer>
-            <StyledGreeting>
-                <StyledHeader offset={offset} >
-                    <StyledTitle> {name} <br/><br/> welcome  to information portal</StyledTitle><br/>
-                    <StyledSubtitle>Craft in Warcraft</StyledSubtitle>
-                </StyledHeader>
-                <StyledLayerBack offset={offset}/>
-                <StyledLayerMiddle offset={offset}/>
-                <StyledLayerFront offset={offset}/>
-            </StyledGreeting>
-            <Factions />
-            <Classes />
-            <Races />
-            <ExplorerLink />
-            <CSSTransition
+        <>
+            <Helmet>
+                <title>Craft in Warcraft</title>
+                <link rel="icon" href="/favicons/main.ico" />
+            </Helmet>
+            <StyledContainer>
+                <StyledGreeting>
+                    <StyledHeader offset={offset}>
+                        <StyledTitle> {name} <br /><br /> welcome  to information portal</StyledTitle><br />
+                        <StyledSubtitle>Craft in Warcraft</StyledSubtitle>
+                    </StyledHeader>
+                    <StyledLayerBack offset={offset} />
+                    <StyledLayerMiddle offset={offset} />
+                    <StyledLayerFront offset={offset} />
+                </StyledGreeting>
+                <Factions />
+                <Classes />
+                <Races />
+                <ExplorerLink />
+                <CSSTransition
                     in={showButton}
                     timeout={duration}
                     classNames='image'
@@ -76,12 +82,13 @@ const Main = () => {
                     unmountOnExit
                 >
                     <div>
-                    <UpButton onClick={handleScrollToTop}>
-                        <UpIcon />
-                    </UpButton>
+                        <UpButton onClick={handleScrollToTop}>
+                            <UpIcon />
+                        </UpButton>
                     </div>
                 </CSSTransition>
-        </StyledContainer>
+            </StyledContainer>
+        </>
     );
 };
 
