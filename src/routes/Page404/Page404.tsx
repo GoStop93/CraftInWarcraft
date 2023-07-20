@@ -9,7 +9,7 @@ import {
     StyledButton 
 } from "./Page404.styles";
 
-const Page404 = () => {
+export const Page404 = () => {
     let navigate = useNavigate();
 
     const path = require('../../assets/audio/not_prepared.mp3');
@@ -38,5 +38,3 @@ const Page404 = () => {
         </>
     );
 };
-
-export default Page404;

@@ -33,7 +33,7 @@ const formatRaceName = (raceName: string) => {
     return raceName.replace("_", " ").replace(/\b\w/g, (match) => match.toUpperCase());
 };
 
-const Race = () => {
+export const Race = () => {
     const navigate = useNavigate();
     const { id = "" } = useParams();
     const formattedRaceName = formatRaceName(id);
@@ -130,5 +130,3 @@ const Race = () => {
         </>
     );
 };
-
-export default Race;

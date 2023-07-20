@@ -34,7 +34,7 @@ import {
 import { TimelineNavigation } from "./TimelineNavigation/TimelineNavigation";
 import { dataSlides } from './data';
 
-const TimeLine = () => {
+export const TimeLine = () => {
     const [currentSlideId, setCurrentSlideId] = useState(1);
     const [activeIndex, setActiveIndex] = useState(currentSlideId - 1);
     const [stateCard, setStateCard] = useState<ProjectCardEnum>(ProjectCardEnum.FLIPPED);
@@ -180,5 +180,3 @@ const TimeLine = () => {
         </>
     );
 };
-
-export default TimeLine;

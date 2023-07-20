@@ -4,7 +4,7 @@ import { Header } from "../../components/Header/Header";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-const Layout = ({children}: ILayoutProps) => {
+export const Layout = ({children}: ILayoutProps) => {
     const { pathname } = useLocation();
 
     useEffect(() => {
@@ -20,5 +20,3 @@ const Layout = ({children}: ILayoutProps) => {
         </>
     )
 };
-
-export default Layout;

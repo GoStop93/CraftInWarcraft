@@ -32,7 +32,7 @@ import {
     StyledCopy 
 } from "./Welcome.styles";
 
-const Welcome = () => {
+export const Welcome = () => {
     const [offset, setOffset] = useState(0);
     const [showImage, setShowImage] = useState(false);
 
@@ -114,5 +114,3 @@ const Welcome = () => {
         </>
     )
 };
-
-export default Welcome;

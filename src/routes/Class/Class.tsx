@@ -26,7 +26,7 @@ const formatClassName = (className: string) => {
     return className.replace("_", " ").replace(/\b\w/g, (match) => match.toUpperCase());
 };
 
-const Class = () => {
+export const Class = () => {
     const navigate = useNavigate();
     const { id = "" } = useParams();
     const formattedClassName = formatClassName(id);
@@ -83,5 +83,3 @@ const Class = () => {
         </>
     );
 };
-
-export default Class;

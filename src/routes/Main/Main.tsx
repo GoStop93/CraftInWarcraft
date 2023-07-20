@@ -18,7 +18,7 @@ import { Classes } from "./Classes/Classes";
 import { Races } from "./Races/Races";
 import { ExplorerLink } from "./ExplorerLink/ExplorerLink";
 
-const Main = () => {
+export const Main = () => {
     const [offset, setOffset] = useState(0);
     const name = localStorage.getItem('name');
     const [showButton, setShowButton] = useState(false);
@@ -91,5 +91,3 @@ const Main = () => {
         </>
     );
 };
-
-export default Main;
