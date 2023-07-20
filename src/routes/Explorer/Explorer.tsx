@@ -7,7 +7,7 @@ import {
 } from "./Explorer.styles";
 import { ExplorerTabGroup } from "./ExplorerTabGroup/ExplorerTabGroup";
 
-export const Explorer = () => {
+const Explorer = () => {
 
     const [offset, setOffset] = useState(450);
 
@@ -38,3 +38,5 @@ export const Explorer = () => {
         </StyledContainer>
     );
 };
+
+export default Explorer;

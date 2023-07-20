@@ -31,7 +31,7 @@ import {
     StyledCopy 
 } from "./Welcome.styles";
 
-export const Welcome = () => {
+const Welcome = () => {
     const [offset, setOffset] = useState(0);
     const [showImage, setShowImage] = useState(false);
 
@@ -108,3 +108,5 @@ export const Welcome = () => {
         </StyledContainer>
     )
 };
+
+export default Welcome;
