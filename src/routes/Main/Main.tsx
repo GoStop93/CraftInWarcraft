@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from 'react-helmet';
 import { CSSTransition } from "react-transition-group";
+import { MyParticles } from "../../components/Particles/Particles";
 import { 
     StyledContainer, 
     StyledGreeting,
@@ -68,7 +69,9 @@ export const Main = () => {
                     </StyledHeader>
                     <StyledLayerBack offset={offset} />
                     <StyledLayerMiddle offset={offset} />
-                    <StyledLayerFront offset={offset} />
+                    <StyledLayerFront offset={offset}>
+                        <MyParticles id="3" color='#3794fd' min={0.5} count={200}/>
+                    </StyledLayerFront>
                 </StyledGreeting>
                 <Factions />
                 <Classes />

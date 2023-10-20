@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from 'react-helmet';
 import { CSSTransition } from "react-transition-group";
+import { MyParticles } from "../../components/Particles/Particles";
 import silvana from '../../assets/images/welcome/silvana.png';
 import garrosh from '../../assets/images/welcome/garrosh.png';
 import anduin from '../../assets/images/welcome/anduin.png';
@@ -65,7 +66,9 @@ export const Welcome = () => {
                             <StyledCaption>Welcome to Project</StyledCaption>
                             <StyledTitle>Craft in Warcraft</StyledTitle>
                         </StyledHeader>
-                        <StyledLayerBack offset={offset}></StyledLayerBack>
+                        <StyledLayerBack offset={offset}>
+                            <MyParticles id="2" color='#ADB844' min={1} count={300}/>
+                        </StyledLayerBack>
                         <StyledLayerMiddle offset={offset}></StyledLayerMiddle>
                         <StyledLayerFront offset={offset}></StyledLayerFront>
                     </StyledLayers>
