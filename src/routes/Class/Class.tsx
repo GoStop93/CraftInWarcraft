@@ -47,7 +47,7 @@ export const Class = () => {
         <>
             <Helmet>
                 <title>{formattedClassName}</title>
-                <link rel="icon" href="/favicons/class.ico" />
+                <link rel="icon" href="favicons/class.ico" />
             </Helmet>
             <StyledContainer background={classInfo.backgroundImage}>
                 <StyledHeader color={classInfo.textColor}>{formattedClassName}</StyledHeader>

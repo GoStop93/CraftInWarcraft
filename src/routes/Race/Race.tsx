@@ -76,7 +76,7 @@ export const Race = () => {
         <>
             <Helmet>
                 <title>{raceInfo.text ? raceInfo.text : formattedRaceName}</title>
-                <link rel="icon" href="/favicons/race.ico" />
+                <link rel="icon" href="favicons/race.ico" />
             </Helmet>
             <StyledContainer>
                 <StyledHeader>

@@ -26,7 +26,7 @@ export const Page404 = () => {
         <>
             <Helmet>
                 <title>404</title>
-                <link rel="icon" href="/favicons/404.ico" />
+                <link rel="icon" href="favicons/404.ico" />
             </Helmet>
             <StyledContainer>
                 <StyledContent>

@@ -112,7 +112,7 @@ export const TimeLine = () => {
         <>
             <Helmet>
                 <title>Timeline</title>
-                <link rel="icon" href="/favicons/timeline.ico" />
+                <link rel="icon" href="favicons/timeline.ico" />
             </Helmet>
             <StyledContainer>
                 {isBackDisabled ? null : (

@@ -59,7 +59,7 @@ export const Main = () => {
         <>
             <Helmet>
                 <title>Craft in Warcraft</title>
-                <link rel="icon" href="/favicons/main.ico" />
+                <link rel="icon" href="favicons/main.ico" />
             </Helmet>
             <StyledContainer>
                 <StyledGreeting>

@@ -57,7 +57,7 @@ export const Welcome = () => {
         <>
             <Helmet>
                 <title>Welcome to Craft in Warcraft</title>
-                <link rel="icon" href="/favicons/main.ico" />
+                <link rel="icon" href="favicons/main.ico" />
             </Helmet>
             <StyledContainer>
                 <StyledGreetings>

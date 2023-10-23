@@ -30,7 +30,7 @@ export const Explorer = () => {
         <>
             <Helmet>
                 <title>Explorer</title>
-                <link rel="icon" href="/favicons/explorer.ico" />
+                <link rel="icon" href="favicons/explorer.ico" />
             </Helmet>
             <StyledContainer>
                 <StyledHeader>
