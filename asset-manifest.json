@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/craftinwarcraft/static/css/main.dacace1b.css",
-    "main.js": "/craftinwarcraft/static/js/main.082e9ca7.js",
+    "main.js": "/craftinwarcraft/static/js/main.dbc8729a.js",
     "static/media/pets.png": "/craftinwarcraft/static/media/pets.8b0da63a216c05c63fe6.png",
     "static/media/bran.png": "/craftinwarcraft/static/media/bran.18d7a8ac008d40cb6099.png",
     "static/media/home.jpg": "/craftinwarcraft/static/media/home.4006a482a2dc1a91f2f5.jpg",
@@ -185,10 +185,10 @@
     "static/media/swordCursor.cur": "/craftinwarcraft/static/media/swordCursor.a8633e2ecdf9c9f9299a.cur",
     "index.html": "/craftinwarcraft/index.html",
     "main.dacace1b.css.map": "/craftinwarcraft/static/css/main.dacace1b.css.map",
-    "main.082e9ca7.js.map": "/craftinwarcraft/static/js/main.082e9ca7.js.map"
+    "main.dbc8729a.js.map": "/craftinwarcraft/static/js/main.dbc8729a.js.map"
   },
   "entrypoints": [
     "static/css/main.dacace1b.css",
-    "static/js/main.082e9ca7.js"
+    "static/js/main.dbc8729a.js"
   ]
 }
