@@ -1,5 +1,9 @@
 import { CLASS_NAMES_ENUM } from "./ClassCard/type"
 
+export interface IClassesProps  {
+    offset: number,
+}
+
 export const listOfClasses = [
     {
         className: CLASS_NAMES_ENUM.WARRIOR,

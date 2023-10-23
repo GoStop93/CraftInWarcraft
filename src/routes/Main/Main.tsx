@@ -74,7 +74,7 @@ export const Main = () => {
                     </StyledLayerFront>
                 </StyledGreeting>
                 <Factions />
-                <Classes />
+                <Classes offset={offset}/>
                 <Races />
                 <ExplorerLink />
                 <CSSTransition

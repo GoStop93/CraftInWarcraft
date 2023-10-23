@@ -3,16 +3,19 @@ import {
     StyledHeader, 
     StyledTitle,
     StyledSubtitle,
-    StyledContent 
+    StyledContent,
+    StyledLayer,
 } from "./Classes.styles";
 
-import { listOfClasses } from "./type";
+import { listOfClasses, IClassesProps } from "./type";
 
 import { ClassCard } from "./ClassCard/ClassCard";
 
-export const Classes = () => {
+export const Classes = ({ offset }: IClassesProps) => {
+
     return (
         <StyledContainer>
+            <StyledLayer offset={offset}/>
             <StyledHeader>
                 <StyledTitle>Classes</StyledTitle>
                 <StyledSubtitle>From knights in shiny armor to skulking stalkers and cunning spellcasters, each class in World of Warcraft presents unique challenges and gameplay for you to master. What is your calling?</StyledSubtitle>

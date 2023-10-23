@@ -4,12 +4,9 @@ import ground from '../../../assets/images/ground.png';
 
 export const StyledContainer = styled.div`
     margin-top: 100vh;
-    min-height: 100vh;
+    height: 206vh;
     width: 100%;
     position: absolute;
-    background-image: url(${background});
-    background-size: cover;
-    background-position: center;
     ::after {
         content: '';
         position: absolute;
@@ -25,10 +22,24 @@ export const StyledContainer = styled.div`
     }
 `;
 
+export const StyledLayer = styled.div<{ offset: number}>`
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    margin-top: -70vh;
+    background-image: url(${background});
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+    transform: translate3d(0, ${props => props.offset/3}px, 0);
+    z-index: -1;
+`;
+
 export const StyledHeader = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 2;
 `;
 
 export const StyledTitle = styled.div`
@@ -37,6 +48,7 @@ export const StyledTitle = styled.div`
     margin-top: 5vh;
     color: #fbee65;
     text-shadow:  0 0 5px #FDE905;
+    z-index: 2;
 `;
 
 export const StyledSubtitle = styled.div`
@@ -45,6 +57,7 @@ export const StyledSubtitle = styled.div`
     font-weight: 100;
     margin-top: 2vh;
     width: 103vh;
+    z-index: 2;
 `;
 
 export const StyledContent = styled.div`
@@ -52,4 +65,5 @@ export const StyledContent = styled.div`
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 0 0 15vh;
+    z-index: 2;
 `;
