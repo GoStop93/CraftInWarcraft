@@ -1,3 +1,3 @@
-export interface IItemProps{
-    id: any,
+export interface IItemProps {
+  id: any;
 }

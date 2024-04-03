@@ -1,3 +1,3 @@
 export interface IPetsAbilityProps {
-    petsAbility: number;
+  petsAbility: number;
 }

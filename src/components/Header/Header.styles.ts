@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const StyledContainer = styled.div`
   border-bottom: 1px solid rgba(169, 169, 169, 0.2196078431372549);

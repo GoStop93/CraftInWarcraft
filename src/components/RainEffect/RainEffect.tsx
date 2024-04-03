@@ -23,22 +23,17 @@ export const RainEffect = ({ rain }: IRainEffectProps) => {
         }
         setIcons(itemIcons);
       } catch (error) {
-        console.error("Error fetching item icons:", error);
+        console.error('Error fetching item icons:', error);
       }
     };
 
     fetchItemIcons();
   }, []);
-  
+
   return (
     <Container rain={rain}>
       {icons.map((icon, index) => (
-        <Icon
-          key={index}
-          iconSrc={icon.url}
-          position={generateRandomPosition()}
-          delay={generateRandomDelay()}
-        />
+        <Icon key={index} iconSrc={icon.url} position={generateRandomPosition()} delay={generateRandomDelay()} />
       ))}
     </Container>
   );

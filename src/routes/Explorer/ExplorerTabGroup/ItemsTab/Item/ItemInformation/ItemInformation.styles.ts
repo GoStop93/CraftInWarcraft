@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledItemName = styled.div<{ color: string }>`
   font-size: 3vh;
   font-weight: 100;
-  color: ${props => {
+  color: ${(props) => {
     switch (props.color) {
       case 'Common':
         return '#fff';
@@ -31,7 +31,7 @@ export const StyledItemLevel = styled.div`
 `;
 
 export const StyledItemMainText = styled.div<{ color?: any }>`
-  color: ${(props) => props.color? props.color : '#E0D3B8'};
+  color: ${(props) => (props.color ? props.color : '#E0D3B8')};
   font-size: 2.5vh;
   line-height: 2vh;
 `;
@@ -56,14 +56,14 @@ export const StyledPrice = styled.div`
   display: flex;
   align-items: center;
   gap: 0.3vh;
-  color: #E0D3B8;
+  color: #e0d3b8;
   font-size: 2.5vh;
   line-height: 2vh;
 `;
 
 export const StyledPriceIcon = styled.img`
   width: 13px;
-  height: 13px; 
+  height: 13px;
   margin-right: 0.5vh;
 `;
 
@@ -84,7 +84,7 @@ export const StyledSocket = styled.div`
 
 export const StyledSocketImage = styled.img`
   width: 14px;
-  height: 14px; 
+  height: 14px;
   margin-right: 0.5vh;
 `;
 
@@ -133,8 +133,8 @@ export const StyledSetBonus = styled.div`
   line-height: 2vh;
 `;
 
-export const StyledDescription = styled.div<{ recipe? : boolean }>`
-  color: ${(props) => props.recipe? '#1eff00' : 'rgb(255, 209, 0)'};
+export const StyledDescription = styled.div<{ recipe?: boolean }>`
+  color: ${(props) => (props.recipe ? '#1eff00' : 'rgb(255, 209, 0)')};
   font-size: 2.5vh;
   line-height: 2vh;
 `;
@@ -146,12 +146,12 @@ export const StyledReagents = styled.div`
 `;
 
 export const StyledToy = styled.div`
-  color: #66BBFF;
+  color: #66bbff;
   font-size: 2.5vh;
   line-height: 2vh;
 `;
 
-export const StyledItemNameDescription = styled.div<{ r?: string, g?: string, b?: string }>`
+export const StyledItemNameDescription = styled.div<{ r?: string; g?: string; b?: string }>`
   color: ${(props) => `rgb(${props.r}, ${props.g}, ${props.b})`};
   font-size: 2.5vh;
   line-height: 2vh;
@@ -159,13 +159,13 @@ export const StyledItemNameDescription = styled.div<{ r?: string, g?: string, b?
 
 export const StyledPlayableClassesContainer = styled.div`
   display: flex;
-  color: #E0D3B8;
+  color: #e0d3b8;
   font-size: 2.5vh;
   line-height: 2vh;
   gap: 0.5vh;
 `;
 
-export const StyledPlayableClass = styled.div<{ playableClasse: string}>`
+export const StyledPlayableClass = styled.div<{ playableClasse: string }>`
   color: ${({ playableClasse }) => {
     switch (playableClasse) {
       case 'Warrior':

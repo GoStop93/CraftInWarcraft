@@ -1,3 +1,3 @@
 export interface IRainEffectProps {
-    rain: boolean;
+  rain: boolean;
 }

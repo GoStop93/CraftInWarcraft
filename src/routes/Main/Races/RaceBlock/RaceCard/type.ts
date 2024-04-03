@@ -1,8 +1,8 @@
 export interface IRaceCardProps {
-    color: string;
-    smallLogo: string;
-    name: string;
-    iconFull: string;
-    iconPart: string;
-    text?: string;
+  color: string;
+  smallLogo: string;
+  name: string;
+  iconFull: string;
+  iconPart: string;
+  text?: string;
 }

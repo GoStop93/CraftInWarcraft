@@ -1,6 +1,6 @@
-import { RaceAdditionalInformation } from "../type";
+import { RaceAdditionalInformation } from '../type';
 
 export interface IRaceInfirmatioProps {
-    color: string;
-    raceAdditionalInformation: RaceAdditionalInformation[];
+  color: string;
+  raceAdditionalInformation: RaceAdditionalInformation[];
 }

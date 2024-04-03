@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledEncounter = styled.div`
   display: inline;
@@ -30,7 +30,7 @@ export const ModalTitle = styled.div`
 `;
 
 export const ModalText = styled.div`
-  color: #E0D3B8;
+  color: #e0d3b8;
   font-size: 2.5vh;
   line-height: 2vh;
 `;

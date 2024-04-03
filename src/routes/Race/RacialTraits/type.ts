@@ -1,5 +1,5 @@
-import { RacialTraits } from "../type"
+import { RacialTraits } from '../type';
 
 export interface IRacialTraitsProps {
-    traits: RacialTraits[]
+  traits: RacialTraits[];
 }

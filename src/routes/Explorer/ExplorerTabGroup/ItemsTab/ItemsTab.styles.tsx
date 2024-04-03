@@ -1,8 +1,12 @@
-import styled from "styled-components";
-import { Form } from "formik";
+import styled from 'styled-components';
+import { Form } from 'formik';
 import background from '../../../../assets/images/background/explorer/explorer_tabs/items.jpg';
 import bottomBackground from '../../../../assets/images/background/explorer/second_background.jpg';
 import ground from '../../../../assets/images/ground.png';
+
+interface StyledLayerBackProps {
+  offset: number;
+}
 
 export const StyledContainer = styled.div`
   height: 100vh;
@@ -30,18 +34,20 @@ export const StyledTopContent = styled.div`
   }
 `;
 
-export const StyledLayerBack = styled.div<{ offset: number}>`
-  height: 60vh;
-  margin-top: -20vh;
-  width: 100%;
-  position: absolute;
-  background: url(${background});
-  background-size: cover;
-  background-position: center;
-  will-change: transform;
-  z-index: 1;
-  transform: translate3d(0, ${props => props.offset/5}px, 0);
-`;
+export const StyledLayerBack = styled.div.attrs<StyledLayerBackProps>((props) => ({
+  style: {
+    height: '60vh',
+    marginTop: '-20vh',
+    width: '100%',
+    position: 'absolute',
+    background: `url(${background})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    willChange: 'transform',
+    zIndex: 1,
+    transform: `translate3d(0, ${props.offset / 5}px, 0)`,
+  },
+}))<StyledLayerBackProps>``;
 
 export const StyledTitle = styled.div`
   position: absolute;
@@ -69,7 +75,6 @@ export const StyledBottomContent = styled.div`
 export const DemonHunterImage = styled.img`
   height: 70vh;
   transform: scaleX(-1);
-
 `;
 
 export const StyledNavigation = styled.div`
@@ -102,7 +107,7 @@ export const StyledButtonAndTitle = styled.div`
   font-size: 2vh;
   line-height: 2vh;
   padding: 1vh;
-  color: #E1A42E;
+  color: #e1a42e;
 `;
 
 export const RandomButton = styled.button`
@@ -111,7 +116,7 @@ export const RandomButton = styled.button`
   justify-content: center;
   height: 4.5vh;
   width: 15vh;
-  border-color: #F1B924;
+  border-color: #f1b924;
   border-radius: 8px;
   background: rgba(221, 221, 221, 0.01);
   z-index: 5;
@@ -127,12 +132,12 @@ export const ButtonText = styled.div`
   font-size: 3vh;
   padding: 6px 0;
   margin-top: 0.2vh;
-  color: #F1B924;
+  color: #f1b924;
   font-family: warcraft;
   text-shadow: 0 0 2px black;
 `;
 
-export const StyledItemContent= styled.div`
+export const StyledItemContent = styled.div`
   display: flex;
   justify-content: space-between;
 `;
@@ -148,17 +153,17 @@ export const StyledInputAndMessage = styled.div`
 `;
 
 export const StyledInput = styled.input`
-  border-color: #F1B924;
+  border-color: #f1b924;
   margin-top: 0.5vh;
   background: rgba(221, 221, 221, 0.1);
-  color: #E0D3B8;
+  color: #e0d3b8;
 
   font-size: 2vh;
   &:focus {
-      outline: none;
+    outline: none;
   }
   &:hover {
-      cursor: var(--custom-cursor-mail);
+    cursor: var(--custom-cursor-mail);
   }
 `;
 
@@ -182,7 +187,7 @@ export const GoButton = styled.button`
   margin-top: -0.5vh;
   width: 15vh;
   height: 4.5vh;
-  border-color: #F1B924;
+  border-color: #f1b924;
   border-radius: 8px;
   background: rgba(221, 221, 221, 0.01);
   z-index: 5;
@@ -199,5 +204,5 @@ export const StyledNavigationText = styled.div`
   font-size: 3vh;
   width: 20vh;
   height: auto;
-  color: #E1A42E;
+  color: #e1a42e;
 `;

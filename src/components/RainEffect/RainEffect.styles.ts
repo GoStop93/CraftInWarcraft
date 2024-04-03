@@ -18,16 +18,16 @@ export const Icon = styled.div<{ iconSrc: string; position: number; delay: numbe
   position: absolute;
   width: 5vh;
   height: 5vh;
-  background-image: url(${props => props.iconSrc});
+  background-image: url(${(props) => props.iconSrc});
   background-size: cover;
   background-position: center;
   animation: ${rainAnimation} 3s linear infinite;
-  animation-delay: ${props => props.delay}s;
+  animation-delay: ${(props) => props.delay}s;
   border: 1px solid rgb(68, 68, 68);
   border-radius: 1vh;
   z-index: 1;
   top: -10vh;
-  left: ${props => props.position}%;
+  left: ${(props) => props.position}%;
 `;
 
 export const Container = styled.div<{ rain: boolean }>`
@@ -35,5 +35,5 @@ export const Container = styled.div<{ rain: boolean }>`
   width: 100%;
   position: absolute;
   overflow: hidden;
-  visibility: ${(props) => props.rain ? 'visible' : 'hidden' };
+  visibility: ${(props) => (props.rain ? 'visible' : 'hidden')};
 `;

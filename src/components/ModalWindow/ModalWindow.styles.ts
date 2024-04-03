@@ -23,10 +23,10 @@ export const StyledContainer = styled.div<{ medium?: boolean }>`
   border: 1px solid rgb(68, 68, 68);
 `;
 
-export const CloseButton = styled.button<{ big?: boolean, medium?: boolean }>`
+export const CloseButton = styled.button<{ big?: boolean; medium?: boolean }>`
   position: absolute;
-  top: ${(props) => (props.big ?' -4vh' : props.medium ? '-3vh' : '2vh')};
-  right: ${(props) => (props.big ?' -4vh' : props.medium ? '-3vh' : '2vh')};
+  top: ${(props) => (props.big ? ' -4vh' : props.medium ? '-3vh' : '2vh')};
+  right: ${(props) => (props.big ? ' -4vh' : props.medium ? '-3vh' : '2vh')};
   fill: rgb(248, 183, 0);
   padding: 0;
   background: transparent;
@@ -38,7 +38,7 @@ export const CloseButton = styled.button<{ big?: boolean, medium?: boolean }>`
 
   & svg {
     pointer-events: none;
-    width: ${(props) => (props.big ?' 3vh' : '2vh')};
-    height: ${(props) => (props.big ?' 3vh' : '2vh')};
+    width: ${(props) => (props.big ? ' 3vh' : '2vh')};
+    height: ${(props) => (props.big ? ' 3vh' : '2vh')};
   }
 `;

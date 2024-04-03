@@ -1,3 +1,3 @@
 export interface ITabProps {
-    offset: number,
+  offset: number;
 }

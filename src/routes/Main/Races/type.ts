@@ -38,100 +38,102 @@ import PandarenHordeFull from '../../../assets/icons/races/races_icons/pandaren_
 import PandarenHordePart from '../../../assets/icons/races/races_icons/pandaren_horde_part.png';
 
 export const racesData = [
-    {
-        fraction: 'alliance',
-        background: AlianceBackground,
-        logo: AllianceLogo,
-        smallLogo: AllianceSmallLogo,
-        title: 'FOR THE ALLIANCE',
-        subtitle: 'The steadfast Alliance is driven by tradition. They are staunch defenders of justice and duty who protect the realm of Azeroth against any aggressors, including the savage Horde',
-        color: '#0078FF',
-        races: [
-            {
-                name: 'Human',
-                iconFull: HumanFull,
-                iconPart: HumanPart,
-            },
-            {
-                name: 'Dwarf',
-                iconFull: DwarfFull,
-                iconPart: DwarfPart,
-            },
-            {
-                name: 'Night_Elf',
-                iconFull: NightElfFull,
-                iconPart: NightElfPart,
-                text: 'Night Elf'
-            },
-            {
-                name: 'Gnome',
-                iconFull: GnomeFull,
-                iconPart: GnomePart,
-            },
-            {
-                name: 'Draenei',
-                iconFull: DraeneiFull,
-                iconPart: DraeneiPart,
-            },
-            {
-                name: 'Worgen',
-                iconFull: WorgenFull,
-                iconPart: WorgenPart,
-            },
-            {
-                name: 'Pandaren_alliance',
-                iconFull: PandarenAllianceFull,
-                iconPart: PandarenAlliancePart,
-                text: 'Pandaren',
-            },
-        ]
-    },
-    {
-        fraction: 'horde',
-        background: HordeBackground,
-        logo: HordeLogo,
-        smallLogo: HordeSmallLogo,
-        title: 'FOR THE HORDE',
-        subtitle: 'The indomitable Horde is driven by unity. They are fervent keepers of freedom and hope, relentlessly opposed to any who threaten these ideals, including the stringent Alliance.',
-        color: '#B30000',
-        races: [
-            {
-                name: 'Orc',
-                iconFull: OrcFull,
-                iconPart: OrcPart,
-            },
-            {
-                name: 'Undead',
-                iconFull: UndeadFull,
-                iconPart: UndeadPart,
-            },
-            {
-                name: 'Tauren',
-                iconFull: TaurenFull,
-                iconPart: TaurenPart,
-            },
-            {
-                name: 'Troll',
-                iconFull: TrollFull,
-                iconPart: TrollPart,
-            },
-            {
-                name: 'Blood_Elf',
-                iconFull: BloodElfFull,
-                iconPart: BloodElfPart,
-                text: 'Blood Elf'
-            },
-            {
-                name: 'Goblin',
-                iconFull: GoblinFull,
-                iconPart: GoblinPart,
-            },
-            {
-                name: 'Pandaren_horde',
-                iconFull: PandarenHordeFull,
-                iconPart: PandarenHordePart,
-                text: 'Pandaren',
-            },
-        ]
-    },
+  {
+    fraction: 'alliance',
+    background: AlianceBackground,
+    logo: AllianceLogo,
+    smallLogo: AllianceSmallLogo,
+    title: 'FOR THE ALLIANCE',
+    subtitle:
+      'The steadfast Alliance is driven by tradition. They are staunch defenders of justice and duty who protect the realm of Azeroth against any aggressors, including the savage Horde',
+    color: '#0078FF',
+    races: [
+      {
+        name: 'Human',
+        iconFull: HumanFull,
+        iconPart: HumanPart,
+      },
+      {
+        name: 'Dwarf',
+        iconFull: DwarfFull,
+        iconPart: DwarfPart,
+      },
+      {
+        name: 'Night_Elf',
+        iconFull: NightElfFull,
+        iconPart: NightElfPart,
+        text: 'Night Elf',
+      },
+      {
+        name: 'Gnome',
+        iconFull: GnomeFull,
+        iconPart: GnomePart,
+      },
+      {
+        name: 'Draenei',
+        iconFull: DraeneiFull,
+        iconPart: DraeneiPart,
+      },
+      {
+        name: 'Worgen',
+        iconFull: WorgenFull,
+        iconPart: WorgenPart,
+      },
+      {
+        name: 'Pandaren_alliance',
+        iconFull: PandarenAllianceFull,
+        iconPart: PandarenAlliancePart,
+        text: 'Pandaren',
+      },
+    ],
+  },
+  {
+    fraction: 'horde',
+    background: HordeBackground,
+    logo: HordeLogo,
+    smallLogo: HordeSmallLogo,
+    title: 'FOR THE HORDE',
+    subtitle:
+      'The indomitable Horde is driven by unity. They are fervent keepers of freedom and hope, relentlessly opposed to any who threaten these ideals, including the stringent Alliance.',
+    color: '#B30000',
+    races: [
+      {
+        name: 'Orc',
+        iconFull: OrcFull,
+        iconPart: OrcPart,
+      },
+      {
+        name: 'Undead',
+        iconFull: UndeadFull,
+        iconPart: UndeadPart,
+      },
+      {
+        name: 'Tauren',
+        iconFull: TaurenFull,
+        iconPart: TaurenPart,
+      },
+      {
+        name: 'Troll',
+        iconFull: TrollFull,
+        iconPart: TrollPart,
+      },
+      {
+        name: 'Blood_Elf',
+        iconFull: BloodElfFull,
+        iconPart: BloodElfPart,
+        text: 'Blood Elf',
+      },
+      {
+        name: 'Goblin',
+        iconFull: GoblinFull,
+        iconPart: GoblinPart,
+      },
+      {
+        name: 'Pandaren_horde',
+        iconFull: PandarenHordeFull,
+        iconPart: PandarenHordePart,
+        text: 'Pandaren',
+      },
+    ],
+  },
 ];

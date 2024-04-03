@@ -1,3 +1,3 @@
 export interface IEncounterProps {
-    encounter: number;
+  encounter: number;
 }
