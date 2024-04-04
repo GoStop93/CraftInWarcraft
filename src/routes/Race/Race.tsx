@@ -57,6 +57,9 @@ export const Race = () => {
 
   useLenis(({ scroll }) => {
     setOffset(scroll);
+    const scrollThreshold = 700;
+
+    (scroll >= scrollThreshold) ? setIsButtonFixed(true) : setIsButtonFixed(false);
   });
 
   return !raceInfo ? null : (
